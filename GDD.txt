@@ -1,0 +1,92 @@
+RaidTA
+
+Concept
+		The main endgame content of modern mmorpgs are multiplayer raids, where a group of players
+	fight a series of bosses. Many guides and videos describing how to perform raids exist, however
+	personally, I much prefer a more hands-on approach to learning. Since most raid groups only meet
+	at specific times, practicing these fights and mechanics is difficult. RaidTA aims to provide a
+	program where players can practice and visually see the mechanics of raids without having to 
+	gather upwards of 19 other players.
+	
+		For now, raids will be taken from existing raids in World of Warcraft. In the future I may decide
+	to take a more "gamified" route and create my own raids.
+	
+		Other future goals include choosing specific classes (warrior, mage, priest, etc.) which have specific
+	and unique abilites.
+
+Gameplay
+		The player will be given a top down view of the raid. From this view, the player can see all the
+	members of the raid (controlled by cpu), the boss(es), and all mechanics that are happening. There are
+	two possible, closely related, paths that the game can take from here.
+		
+		Either the player controls only their character and handles their one role (tank, damage, heal) or
+	the player controls the entire raid (with extremely simplified gameplay mechanics related to WoW).
+	
+		Single Control
+			- More specific for that role
+			- Requires much more ai so the other raid members perform their role perfectly
+			- Probably much easier to implement once Raid Control is implemented
+		
+		Raid Control
+			- Better for Raid Leaders to help manage their raid team
+			- Easier to implement, as less ai is needed
+			- Leads to a potential more "gamified" program
+			
+		I will begin with Raid Control and depending on progress will continue onto Single Control
+
+	Controls
+		Single Control
+			- TBD
+			
+		Raid Control
+			- If no outside input occurs, the character will do one of three things based on role
+				- Damage: continue attacking the targeted enemy
+				- Heal: heal injured party members that are within range
+				- Tank: continue attacking the targeted enemy
+				
+			- If the player clicks and drags
+				- Release on ground: character will move to the specified location and resume their
+					idle action (defined above)
+				- Release on enemy: if the character is a tank or damage, this sets their target to this enemy.
+					if a healer, then moves.
+				
+			
+			- If the player right clicks on the character, they will perform their cooldown ability
+				- Tank: Mitigation cooldown. Prevents a percentage of damage taken. Commonly used when the
+					boss is about to use an important ability
+				- Healer: heavy raid-wide healing. Typically used when the raid takes large amounts of damage
+				- Melee Damage: heavy single target damage to the targeted enemy
+				- Ranged Damage: heavy area of effect (aoe) damage centered on the target
+
+Art
+	Characters/Enemies
+		Super simple art. Role icons for player characters and simple portraits for enemies.
+	
+		Examples:
+			- Player Characters: https://ih1.redbubble.net/image.413287082.4003/flat,750x1000,075,f.u2.jpg 
+			- Boss: https://iphone-image.apkpure.com/v2/app/4/1/a/41a44ede52cd7d71d31b8a5ffa6d7367.jpg
+			
+	UI
+		Honestly just what unreal has default. Art is not my priority as I have no artistic skills :)
+				
+	Environment
+		Minimal of what is needed to convey mechanics
+		
+		Example (Even simpler than this) - https://wow.zamimg.com/uploads/screenshots/normal/877091.jpg
+		
+Audio
+		
+AI
+	Player Characters:
+		- Move to point
+		- Attack current target on timer
+				or
+		- Heal party member
+			- Experiment here with what feels best
+			- For now priority is
+				- Low Health Tank
+				- Low Health Damage
+				- Injured Tank
+				- Injured Damage
+		- 
+			

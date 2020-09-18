@@ -39,6 +39,9 @@ Gameplay
 			- TBD
 			
 		Raid Control
+			- Player can select the character they want via keyboard buttons. Ex: 1-8 for an 8 person raid.
+				If the fights get scaled to real size, brainstorm better control schemes.
+				
 			- If no outside input occurs, the character will do one of three things based on role
 				- Damage: continue attacking the targeted enemy
 				- Heal: heal injured party members that are within range
@@ -68,6 +71,8 @@ Art
 			
 	UI
 		Honestly just what unreal has default. Art is not my priority as I have no artistic skills :)
+		Cast bar for Boss/Adds might be nice however.
+		Also timer bars could be helpful for learning.
 				
 	Environment
 		Minimal of what is needed to convey mechanics
@@ -75,6 +80,9 @@ Art
 		Example (Even simpler than this) - https://wow.zamimg.com/uploads/screenshots/normal/877091.jpg
 		
 Audio
+	Initally None.
+	Later could add Raid Warnings (Horns, Sirens, etc.) to notifty of important mechanics
+	Also Later if I feel spicy add sword swings, magic fizzes, clangs, etc.
 		
 AI
 	Player Characters:
@@ -88,5 +96,29 @@ AI
 				- Low Health Damage
 				- Injured Tank
 				- Injured Damage
-		- 
+	
+	NPC:
+		This is where it gets more complicated
+		Off the top of my head, best way is to do the following as to not overload the Boss with functions. 
+		
+		Boss:
+			- Handle just the boss character
+			- Attack, cast, move, etc.
+			- Timings for these are based on timers in Encounter
+			- Essentially the boss is a Smaller Enemy (Add) with more functions
+		
+		Smaller Enemies (Adds):
+			- Handle just themselves
+			- Depends on fight
+			- Examples: Attack nearest enemy, attack enemy with highest threat (simplify this to change target to 
+				tank if a tank attacks them)
+		
+		Encounter:
+			- Handle timers (ex: every 90 seconds) and milestones (ex: boss reached 50% hp)
+			- Notify Boss(es)/Adds of when to perform other things
+			- Handle all overall mechanics/events
+			- New enemies being spawned
+			- Large raid-wide events (ex: Large damage, room change, etc.)
+			
+		
 			

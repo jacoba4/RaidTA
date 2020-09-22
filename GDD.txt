@@ -119,6 +119,89 @@ AI
 			- Handle all overall mechanics/events
 			- New enemies being spawned
 			- Large raid-wide events (ex: Large damage, room change, etc.)
+
+
+Code Layout
+(This is only initial, definitely going to change)
+	Encounter
+		Keep track of and references to essentially everything
+		
+		Variables
+			raid_array: Keeps pointers to PC classes
+			boss_array: Keeps pointers to Boss classes
+			add_array: Keeps pointers to NPC classes
+			start_time: Time encounter started
+			current_time: I'm assuming Unreal has something to keep track of this
+			current_encounter: current.....encounter
 			
+			
+		Functions
+			BeginEncounter(int encounter_number)
+				Sets up the room, bosses, adds, players, etc.
+				Look into Unreal's version of ScriptableObjects
+				Sets start_time
+			
+			Tick() (just like unity Update())
+				check timers
+			
+			EndEncounter()
+				cleans everything up
+	
+
+	Unit
+	PC, NPC, Boss(?) will be polymorphisms of this class since they share many functions
+		Variables
+			max_hp: max health
+			hp: current health
+			is_healer: determines if should damage or heal
+			damage: amount of damage each attack
+			attack_speed: number of frames between each attack (ex: 5 attacks when time%5 = 0)
+			has_command: 1 if player inputted command else 0
+			target_destination: location to move to. stored as FVector (Unreal version of Vector3)
+			current_target: (NPC class?) the current target
+
+
+		Functions
+			Tick()
+				calls check_target
+					if damage, checks if target hp is <= 0 then (DECIDE HERE) either switches to nearest target or waits until new target is selected
+					could also switch to previous target? maybe a combination of all of these?
+					
+					if healer, call heal_ai()
+					
+				check when to attack, if time to attack, call Attack()
+					if (is_healer) should call heal instead. Could use Attack with a negative value but :shrug:
+			
+			Attack()
+				calls current_target's Damage(int damage)
+			
+			Heal()
+				only ends up being called if is_healer
+				calls current_target's Restore(int heal)
+				
+			Damage(int damage)
+				hp -= damage
+				if hp <= 0 call Die()
+			
+			Restore(int heal)
+				hp = min(max_hp, hp+heal)
+				can't go above max. could change later if i want to add shields
+				
+			Die()
+				override everything. unit greys out and does nothing (until rezzed?)
+			
+			HealAI()
+				EXTREMELY PRELIMINARY
+				Calls a function from Encounter that finds the lowest hp target of that type (players vs NPCs)
+				and returns an Actor/Pawn/Component?
+					
+				
+		
+		Polymorphisms
+			PC
+				Also contains player input
+			NPC
+				Also contains encounter input
+				
 		
 			

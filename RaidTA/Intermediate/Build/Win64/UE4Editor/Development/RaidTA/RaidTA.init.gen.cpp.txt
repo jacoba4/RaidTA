@@ -1,0 +1,3 @@
+C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\UE4Editor\Development\RaidTA\Definitions.RaidTA.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_4.25\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h

@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\RaidTA.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{541F5468-2F0C-41CF-83AF-C2D39647A1EA}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\RaidTA.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\RaidTAEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{9A508AF0-5896-4A5B-9E3E-7FEE70D584F4}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Config\Android">
+      <UniqueIdentifier>{15CF862E-8081-41D9-8349-19CB3B8F81B2}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\Android\AndroidEngine.ini">
+      <Filter>Config\Android</Filter>
+    </None>
+    <Filter Include="Config\IOS">
+      <UniqueIdentifier>{CE3320FF-0644-4C35-9811-3615E0E8D3D7}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\IOS\IOSEngine.ini">
+      <Filter>Config\IOS</Filter>
+    </None>
+    <Filter Include="Config\Linux">
+      <UniqueIdentifier>{36CF53E4-FF47-4C34-9757-3594CF5355EC}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\Linux\LinuxEngine.ini">
+      <Filter>Config\Linux</Filter>
+    </None>
+    <Filter Include="Config\Mac">
+      <UniqueIdentifier>{5B916775-96E4-4307-A778-29FB0B288318}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\Mac\MacEngine.ini">
+      <Filter>Config\Mac</Filter>
+    </None>
+    <Filter Include="Config\PS4">
+      <UniqueIdentifier>{18F23091-F03F-4EBF-97AC-84F91E0E1F1D}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\PS4\PS4Engine.ini">
+      <Filter>Config\PS4</Filter>
+    </None>
+    <Filter Include="Config\Switch">
+      <UniqueIdentifier>{5A007148-E5B1-42B8-8F74-031F556B8356}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\Switch\SwitchEngine.ini">
+      <Filter>Config\Switch</Filter>
+    </None>
+    <Filter Include="Config\Windows">
+      <UniqueIdentifier>{4EDA56CB-EBC4-492A-A8AA-CF81FE5781FD}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\Windows\WindowsEngine.ini">
+      <Filter>Config\Windows</Filter>
+    </None>
+    <Filter Include="Config\XboxOne">
+      <UniqueIdentifier>{255B0DF6-EA08-4639-A798-53D41A0317EF}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\XboxOne\XboxOneEngine.ini">
+      <Filter>Config\XboxOne</Filter>
+    </None>
+    <Filter Include="Source\RaidTA">
+      <UniqueIdentifier>{0215724A-FBE3-4399-B79B-B3D641FDF650}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\RaidTA\RaidTA.Build.cs">
+      <Filter>Source\RaidTA</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\RaidTA\RaidTA.cpp">
+      <Filter>Source\RaidTA</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\RaidTA\RaidTA.h">
+      <Filter>Source\RaidTA</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\RaidTA\RaidTAGameModeBase.cpp">
+      <Filter>Source\RaidTA</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\RaidTA\RaidTAGameModeBase.h">
+      <Filter>Source\RaidTA</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

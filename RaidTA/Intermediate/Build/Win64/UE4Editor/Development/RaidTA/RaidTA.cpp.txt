@@ -1,0 +1,2 @@
+C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\UE4Editor\Development\RaidTA\Definitions.RaidTA.h
+C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Source\RaidTA\RaidTA.h

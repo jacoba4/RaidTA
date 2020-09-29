@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "RaidTA",
+			"Path": "C:\\Users\\Austin\\Documents\\RPI\\cs\\RaidTA\\RaidTA\\Source\\RaidTA.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "RaidTAEditor",
+			"Path": "C:\\Users\\Austin\\Documents\\RPI\\cs\\RaidTA\\RaidTA\\Source\\RaidTAEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

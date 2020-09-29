@@ -7,6 +7,8 @@
 /IGNORE:4221
 /NODEFAULTLIB
 "C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\RaidTAEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\UE4Editor\Development\RaidTA\RaidManager.cpp.obj"
+"C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\UE4Editor\Development\RaidTA\Unit.cpp.obj"
 "C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\UE4Editor\Development\RaidTA\RaidTA.cpp.obj"
 "C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\UE4Editor\Development\RaidTA\RaidTAGameModeBase.cpp.obj"
 "C:\Users\Austin\Documents\RPI\cs\RaidTA\RaidTA\Intermediate\Build\Win64\UE4Editor\Development\RaidTA\RaidTA.init.gen.cpp.obj"

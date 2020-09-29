@@ -3,7 +3,7 @@
   <ItemGroup>
     <None Include="..\..\RaidTA.uproject" />
     <Filter Include="Source">
-      <UniqueIdentifier>{541F5468-2F0C-41CF-83AF-C2D39647A1EA}</UniqueIdentifier>
+      <UniqueIdentifier>{2298043D-6107-4575-BF6E-600F6ECE7067}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\RaidTA.Target.cs">
       <Filter>Source</Filter>
@@ -12,7 +12,7 @@
       <Filter>Source</Filter>
     </None>
     <Filter Include="Config">
-      <UniqueIdentifier>{9A508AF0-5896-4A5B-9E3E-7FEE70D584F4}</UniqueIdentifier>
+      <UniqueIdentifier>{C78CD881-3B96-43EB-86C5-CBB7850900FB}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\DefaultEditor.ini">
       <Filter>Config</Filter>
@@ -24,55 +24,55 @@
       <Filter>Config</Filter>
     </None>
     <Filter Include="Config\Android">
-      <UniqueIdentifier>{15CF862E-8081-41D9-8349-19CB3B8F81B2}</UniqueIdentifier>
+      <UniqueIdentifier>{85211ABE-B029-465F-B029-CF5E918A6D8B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Android\AndroidEngine.ini">
       <Filter>Config\Android</Filter>
     </None>
     <Filter Include="Config\IOS">
-      <UniqueIdentifier>{CE3320FF-0644-4C35-9811-3615E0E8D3D7}</UniqueIdentifier>
+      <UniqueIdentifier>{8B4F5ECC-9000-44FA-B8DC-49D41B69B5F7}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\IOS\IOSEngine.ini">
       <Filter>Config\IOS</Filter>
     </None>
     <Filter Include="Config\Linux">
-      <UniqueIdentifier>{36CF53E4-FF47-4C34-9757-3594CF5355EC}</UniqueIdentifier>
+      <UniqueIdentifier>{19A9000D-3898-4F9B-BBBB-E2A0A3FF58E4}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Linux\LinuxEngine.ini">
       <Filter>Config\Linux</Filter>
     </None>
     <Filter Include="Config\Mac">
-      <UniqueIdentifier>{5B916775-96E4-4307-A778-29FB0B288318}</UniqueIdentifier>
+      <UniqueIdentifier>{2D1C9AFB-E85F-47F0-9648-0C0F368650DA}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Mac\MacEngine.ini">
       <Filter>Config\Mac</Filter>
     </None>
     <Filter Include="Config\PS4">
-      <UniqueIdentifier>{18F23091-F03F-4EBF-97AC-84F91E0E1F1D}</UniqueIdentifier>
+      <UniqueIdentifier>{B7BD8BAA-FE01-4C90-8E6A-106DA4CBD397}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\PS4\PS4Engine.ini">
       <Filter>Config\PS4</Filter>
     </None>
     <Filter Include="Config\Switch">
-      <UniqueIdentifier>{5A007148-E5B1-42B8-8F74-031F556B8356}</UniqueIdentifier>
+      <UniqueIdentifier>{3D0FFB7D-FA25-4B79-8D54-47907E55C9F6}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Switch\SwitchEngine.ini">
       <Filter>Config\Switch</Filter>
     </None>
     <Filter Include="Config\Windows">
-      <UniqueIdentifier>{4EDA56CB-EBC4-492A-A8AA-CF81FE5781FD}</UniqueIdentifier>
+      <UniqueIdentifier>{BDEBCF22-B6BD-45C7-A5AD-15EC385D4F6B}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\Windows\WindowsEngine.ini">
       <Filter>Config\Windows</Filter>
     </None>
     <Filter Include="Config\XboxOne">
-      <UniqueIdentifier>{255B0DF6-EA08-4639-A798-53D41A0317EF}</UniqueIdentifier>
+      <UniqueIdentifier>{EB355949-2939-4680-80AD-933B20B3AFBE}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Config\XboxOne\XboxOneEngine.ini">
       <Filter>Config\XboxOne</Filter>
     </None>
     <Filter Include="Source\RaidTA">
-      <UniqueIdentifier>{0215724A-FBE3-4399-B79B-B3D641FDF650}</UniqueIdentifier>
+      <UniqueIdentifier>{A5288E82-4F50-4780-81C3-7382135AB568}</UniqueIdentifier>
     </Filter>
     <None Include="..\..\Source\RaidTA\RaidTA.Build.cs">
       <Filter>Source\RaidTA</Filter>
@@ -88,6 +88,24 @@
     </ClCompile>
     <ClInclude Include="..\..\Source\RaidTA\RaidTAGameModeBase.h">
       <Filter>Source\RaidTA</Filter>
+    </ClInclude>
+    <Filter Include="Source\RaidTA\Private">
+      <UniqueIdentifier>{22C0CD38-7524-417A-B842-ADB22DD5D09B}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\RaidTA\Private\RaidManager.cpp">
+      <Filter>Source\RaidTA\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\RaidTA\Private\Unit.cpp">
+      <Filter>Source\RaidTA\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\RaidTA\Public">
+      <UniqueIdentifier>{A1B037D4-D537-4A57-9A1C-0E0AAD274A7C}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\RaidTA\Public\RaidManager.h">
+      <Filter>Source\RaidTA\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\RaidTA\Public\Unit.h">
+      <Filter>Source\RaidTA\Public</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

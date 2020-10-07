@@ -30,12 +30,21 @@ public:
 	// Called to teleport a Unit to a location
 	void MoveToLocation(FVector MoveLocation);
 
+	void AttackUnit(AUnit* Target);
+
+	void SetNewTarget(AUnit* NewTarget);
+
 private:
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
 	int hp;
 	int damage;
 	bool is_healer;
-	bool has_command; // Move this to Player Unit class when made?
+	float attack_speed;
 	FVector target_destination;
+
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Raid")
+	bool has_command;
+	float attack_countdown;
 	AUnit* current_target;
 };

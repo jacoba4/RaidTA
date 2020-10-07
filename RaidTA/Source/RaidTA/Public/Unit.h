@@ -37,14 +37,21 @@ public:
 private:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int hp;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int damage;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	bool is_healer;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float attack_speed;
-	FVector target_destination;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	bool has_command;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	float attack_countdown;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	AUnit* current_target;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Raid")
-	bool has_command;
-	float attack_countdown;
-	AUnit* current_target;
+	FVector target_destination;
 };

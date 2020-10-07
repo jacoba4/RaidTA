@@ -31,11 +31,11 @@ public:
 	void MoveToLocation(FVector MoveLocation);
 
 private:
-	int max_hp;
-	int hp;
-	int damage;
-	bool is_healer;
-	bool has_command; // Move this to Player Unit class when made?
-	FVector target_destination;
-	AUnit* current_target;
+	int max_hp; // edit
+	int hp;	// edit
+	int damage;	// edit
+	bool is_healer;	// edit
+	bool has_command; // edit
+	FVector target_destination; // view
+	AUnit* current_target; // edit
 };

@@ -25,10 +25,19 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
+	void SelectUnit(int index);
 	void SelectUnit0();
 	void SelectUnit1();
+	void SelectUnit2();
+	void SelectUnit3();
+	void SelectUnit4();
+	void SelectUnit5();
+	void SelectUnit6();
+	void SelectUnit7();
 	void ClearSelection();
-	void SendMouseCoordinate();
+	void Click();
+	void SendMouseCoordinate(FVector location);
+	void SendNewTarget(AUnit *unit);
 
 public:	
 	// Called every frame

@@ -34,7 +34,6 @@ public:
 
 	void SetNewTarget(AUnit* NewTarget);
 
-private:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")

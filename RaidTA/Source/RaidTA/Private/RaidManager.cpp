@@ -41,19 +41,50 @@ void ARaidManager::SetupPlayerInputComponent(class UInputComponent* PlayerInputC
 	//Super::SetupPlayerInputComponent(InputComponent);
 	InputComponent->BindAction("Select_Unit_0", IE_Pressed, this, &ARaidManager::SelectUnit0);
 	InputComponent->BindAction("Select_Unit_1", IE_Pressed, this, &ARaidManager::SelectUnit1);
-	InputComponent->BindAction("Click", IE_Pressed, this, &ARaidManager::SendMouseCoordinate);
-}
-void ARaidManager::SelectUnit0()
-{
-	UE_LOG(LogTemp, Warning, TEXT("SelectUnit0"));
-	ClearSelection();
-	selected_units[0] = true;
+	InputComponent->BindAction("Click", IE_Pressed, this, &ARaidManager::Click);
 }
 
+void ARaidManager::SelectUnit(int index)
+{
+	if (index < 0 || index >= raid_size)
+	{
+		return;
+	}
+	ClearSelection();
+	selected_units[index] = true;
+}
+
+void ARaidManager::SelectUnit0()
+{
+	SelectUnit(0);
+}
 void ARaidManager::SelectUnit1()
 {
-	ClearSelection();
-	selected_units[1] = true;
+	SelectUnit(1);
+}
+void ARaidManager::SelectUnit2()
+{
+	SelectUnit(2);
+}
+void ARaidManager::SelectUnit3()
+{
+	SelectUnit(3);
+}
+void ARaidManager::SelectUnit4()
+{
+	SelectUnit(4);
+}
+void ARaidManager::SelectUnit5()
+{
+	SelectUnit(5);
+}
+void ARaidManager::SelectUnit6()
+{
+	SelectUnit(6);
+}
+void ARaidManager::SelectUnit7()
+{
+	SelectUnit(7);
 }
 
 void ARaidManager::ClearSelection()
@@ -64,17 +95,40 @@ void ARaidManager::ClearSelection()
 	}
 }
 
-void ARaidManager::SendMouseCoordinate()
+
+void ARaidManager::Click()
 {
 	APlayerController* playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	FHitResult hit;
 	playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, hit);
-	
+
+	if (hit.GetActor()->GetName() == "Floor")
+	{
+		SendMouseCoordinate(hit.Location);
+	}
+	else if (hit.GetActor()->IsA< AUnit>())
+	{
+		SendNewTarget((AUnit*) hit.GetActor());
+	}
+}
+void ARaidManager::SendMouseCoordinate(FVector location)
+{
 	for (int i = 0; i < raid_size; i++)
 	{
 		if (selected_units[i])
 		{
-			raid_array[i]->MoveToLocation(hit.Location);
+			raid_array[i]->MoveToLocation(location);
+		}
+	}
+}
+
+void ARaidManager::SendNewTarget(AUnit *unit)
+{
+	for (int i = 0; i < raid_size; i++)
+	{
+		if (selected_units[i])
+		{
+			raid_array[i]->SetNewTarget(unit);
 		}
 	}
 }

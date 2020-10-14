@@ -30,8 +30,19 @@ void AUnit::Tick(float DeltaTime)
 	if (!this->has_command && this->attack_countdown <= 0 && this->current_target) {
 		this->AttackUnit(this->current_target);
 		this->attack_countdown = this->attack_speed;
-	} else if (!this->has_command && this->attack_countdown > 0) {
+	} else if (!this->has_command && this->attack_countdown > 0 && this->current_target) {
 		this->attack_countdown -= DeltaTime;
+	} else if (this->has_command) {
+		FVector destinationLocation = FMath::VInterpConstantTo(this->GetActorLocation(), this->target_destination, DeltaTime, this->move_speed);
+		this->SetActorLocation(destinationLocation);
+
+		if (this->GetActorLocation() == this->target_destination) {
+			this->has_command = false;
+		}
+	}
+
+	if (this->has_command || !this->current_target) {
+		this->attack_countdown = this->attack_speed;
 	}
 }
 
@@ -39,23 +50,32 @@ void AUnit::Tick(float DeltaTime)
 void AUnit::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
 }
 
 void AUnit::MoveToLocation(FVector MoveLocation)
 {
-	// Teleportation currently, think about other movement methods
-	SetActorLocation(MoveLocation);
+	this->target_destination = MoveLocation;
+	this->has_command = true;
+}
+
+float AUnit::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+	class AController* EventInstigator, class AActor* DamageCauser)
+{
+	this->hp -= DamageAmount;
+	return DamageAmount;
 }
 
 void AUnit::AttackUnit(AUnit* Target)
 {
-	Target->hp -= this->damage;
+	FHitResult HitResult = FHitResult(this->GetActorLocation(), Target->GetActorLocation());
+	FPointDamageEvent DamageEvent = FPointDamageEvent(this->damage, HitResult, this->GetActorLocation(), UDamageType::StaticClass());
+	Target->TakeDamage(this->damage, DamageEvent, this->GetController(), this);
 	// Potential expansion for skills with different damage values, status effects, etc.
 }
 
 void AUnit::SetNewTarget(AUnit* NewTarget)
 {
-	this->current_target = NewTarget;
+	if (NewTarget != this)
+		this->current_target = NewTarget;
 }
 

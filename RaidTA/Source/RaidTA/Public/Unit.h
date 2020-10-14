@@ -27,6 +27,10 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	// Overriden function to handle damage
+	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
+		class AController* EventInstigator, class AActor* DamageCauser) override;
+
 	// Called to teleport a Unit to a location
 	void MoveToLocation(FVector MoveLocation);
 
@@ -48,6 +52,8 @@ public:
 	bool has_command;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float attack_countdown;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	float move_speed;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	AUnit* current_target;
 

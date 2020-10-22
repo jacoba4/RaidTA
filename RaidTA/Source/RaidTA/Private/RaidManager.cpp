@@ -101,15 +101,27 @@ void ARaidManager::Click()
 	APlayerController* playerController = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	FHitResult hit;
 	playerController->GetHitResultUnderCursor(ECollisionChannel::ECC_Visibility, false, hit);
+	AActor* hit_actor = hit.GetActor();
 
-	if (hit.GetActor()->GetName() == "Floor")
+	if (hit_actor->IsA< AUnit>())
 	{
-		SendMouseCoordinate(hit.Location);
+		AUnit* hit_unit = (AUnit*)hit_actor;
+		if (!hit_unit->is_player)
+		{
+			SendNewTarget(hit_unit);
+		}
+		else
+		{
+			FVector location(hit.Location.X, hit.Location.Y, 10);
+			SendMouseCoordinate(location);
+		}
 	}
-	else if (hit.GetActor()->IsA< AUnit>())
+	else
 	{
-		SendNewTarget((AUnit*) hit.GetActor());
+		FVector location(hit.Location.X, hit.Location.Y, 10);
+		SendMouseCoordinate(location);
 	}
+	
 }
 void ARaidManager::SendMouseCoordinate(FVector location)
 {
@@ -131,5 +143,10 @@ void ARaidManager::SendNewTarget(AUnit *unit)
 			raid_array[i]->SetNewTarget(unit);
 		}
 	}
+}
+
+void ARaidManager::AddUnit(AUnit* unit)
+{
+
 }
 

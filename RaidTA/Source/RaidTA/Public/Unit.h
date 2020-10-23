@@ -38,6 +38,9 @@ public:
 
 	void SetNewTarget(AUnit* NewTarget);
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Status")
+	void CallSetPercent();
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")

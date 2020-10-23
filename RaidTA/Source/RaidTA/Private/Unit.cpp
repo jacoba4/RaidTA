@@ -8,7 +8,6 @@ AUnit::AUnit()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 AUnit::~AUnit()
@@ -75,6 +74,7 @@ float AUnit::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEve
 	class AController* EventInstigator, class AActor* DamageCauser)
 {
 	this->hp -= DamageAmount;
+	this->CallSetPercent();
 	return DamageAmount;
 }
 

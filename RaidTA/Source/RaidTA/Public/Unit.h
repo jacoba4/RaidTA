@@ -49,6 +49,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float attack_speed;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	float range;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	bool has_command;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float attack_countdown;

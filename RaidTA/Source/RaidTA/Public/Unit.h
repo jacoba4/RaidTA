@@ -38,6 +38,9 @@ public:
 
 	void SetNewTarget(AUnit* NewTarget);
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Status")
+	void CallSetPercent();
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
@@ -48,6 +51,8 @@ public:
 	bool is_healer;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float attack_speed;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	float range;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	bool has_command;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")

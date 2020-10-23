@@ -8,7 +8,6 @@ AUnit::AUnit()
 {
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
 }
 
 AUnit::~AUnit()
@@ -27,17 +26,30 @@ void AUnit::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (!this->has_command && this->attack_countdown <= 0 && this->current_target) {
-		this->AttackUnit(this->current_target);
-		this->attack_countdown = this->attack_speed;
-	} else if (!this->has_command && this->attack_countdown > 0 && this->current_target) {
-		this->attack_countdown -= DeltaTime;
-	} else if (this->has_command) {
+	if (this->has_command) {
 		FVector destinationLocation = FMath::VInterpConstantTo(this->GetActorLocation(), this->target_destination, DeltaTime, this->move_speed);
 		this->SetActorLocation(destinationLocation);
 
 		if (this->GetActorLocation() == this->target_destination) {
 			this->has_command = false;
+		}
+	}
+	else if (!this->has_command && this->current_target) {
+		float distance = this->GetDistanceTo(this->current_target);
+		if (distance > this->range) {
+			FVector targetVector = this->current_target->GetActorLocation() - this->GetActorLocation();
+			targetVector.Normalize();
+			FVector scaledLocation = targetVector * (-1 * this->range) + this->current_target->GetActorLocation();
+			this->MoveToLocation(scaledLocation);
+		}
+		else {
+			if (this->attack_countdown <= 0) {
+				this->AttackUnit(this->current_target);
+				this->attack_countdown = this->attack_speed;
+			}
+			else {
+				this->attack_countdown -= DeltaTime;
+			}
 		}
 	}
 
@@ -62,6 +74,7 @@ float AUnit::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEve
 	class AController* EventInstigator, class AActor* DamageCauser)
 {
 	this->hp -= DamageAmount;
+	this->CallSetPercent();
 	return DamageAmount;
 }
 

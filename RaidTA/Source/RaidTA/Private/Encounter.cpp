@@ -37,15 +37,15 @@ void AEncounter::SpawnRaid()
 void AEncounter::CastAoE(int spell_id, FVector location)
 {
 
-	//FSpellInfo spell(spell_database->spells[spell_id]);
+	FSpellInfo spell(spell_database->spells[spell_id]);
 	ADecalActor* decal = GetWorld()->SpawnActor<ADecalActor>(location, FRotator());
 	if (decal)
 	{
 		decal->SetDecalMaterial(indicator_material);
-		decal->SetLifeSpan(50);
-		decal->GetDecal()->DecalSize = FVector(200);
+		decal->SetLifeSpan(spell.duration);
+		decal->GetDecal()->DecalSize = FVector(spell.radius);
 	}
-		
+	
 }
 void AEncounter::RandomPlayerLocation()
 {

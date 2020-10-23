@@ -38,6 +38,7 @@ protected:
 	void Click();
 	void SendMouseCoordinate(FVector location);
 	void SendNewTarget(AUnit *unit);
+	void AddUnit(AUnit* unit);
 
 public:	
 	// Called every frame

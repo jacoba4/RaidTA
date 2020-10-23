@@ -92,3 +92,8 @@ void AUnit::SetNewTarget(AUnit* NewTarget)
 		this->current_target = NewTarget;
 }
 
+void AUnit::CastAoE(int spell_id, FVector location)
+{
+	
+}
+

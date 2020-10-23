@@ -41,6 +41,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Status")
 	void CallSetPercent();
 
+	void CastAoE(int spell_id, FVector location);
+
+	
+
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
@@ -49,6 +53,8 @@ public:
 	int damage;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	bool is_healer;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	bool is_player;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float attack_speed;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
@@ -64,4 +70,6 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Raid")
 	FVector target_destination;
+
+	
 };

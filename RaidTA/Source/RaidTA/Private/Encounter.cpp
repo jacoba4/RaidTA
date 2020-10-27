@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Engine/DecalActor.h"
 #include "Components/DecalComponent.h"
+#include "Math/UnrealMathUtility.h"
 
 // Sets default values
 AEncounter::AEncounter()
@@ -19,7 +20,6 @@ void AEncounter::BeginPlay()
 {
 	Super::BeginPlay();
 	SpawnRaid();
-	CastAoE(0, FVector(0, 0, 10));
 }
 
 // Called every frame
@@ -38,16 +38,16 @@ void AEncounter::CastAoE(int spell_id, FVector location)
 {
 
 	FSpellInfo spell(spell_database->spells[spell_id]);
-	ADecalActor* decal = GetWorld()->SpawnActor<ADecalActor>(location, FRotator());
+	ADecalActor* decal = GetWorld()->SpawnActor<ADecalActor>(spell.spell_blueprint, location, FRotator(90,0,0));
 	if (decal)
 	{
-		decal->SetDecalMaterial(indicator_material);
-		decal->SetLifeSpan(spell.duration);
-		decal->GetDecal()->DecalSize = FVector(spell.radius);
+		
 	}
 	
 }
-void AEncounter::RandomPlayerLocation()
+FVector AEncounter::RandomPlayerLocation()
 {
-
+	int unit = FMath::RandRange(0, raid_manager->raid_size-1);
+	FVector ret = raid_manager->raid_array[unit]->GetTransform().GetLocation();
+	return ret;
 }

@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/DataAsset.h"
+#include "Engine/DecalActor.h"
+#include "Components/DecalComponent.h"
 #include "SpellDataAsset.generated.h"
 
 /**
@@ -21,6 +23,9 @@ struct FSpellInfo
 
 	UPROPERTY(EditAnywhere)
 	float duration;
+public:
+	UPROPERTY(EditAnywhere)
+	TSubclassOf<ADecalActor> spell_blueprint;
 
 };
 UCLASS()

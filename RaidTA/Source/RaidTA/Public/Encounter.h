@@ -27,8 +27,10 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	UFUNCTION(BlueprintCallable, Category = "Encounter")
 	void CastAoE(int spell_id, FVector location);
-	void RandomPlayerLocation();
+	UFUNCTION(BlueprintCallable, Category = "Encounter")
+	FVector RandomPlayerLocation();
 
 	UPROPERTY(EditAnywhere)
 	USpellDatabase* spell_database;

@@ -52,6 +52,7 @@ void ARaidManager::SelectUnit(int index)
 	}
 	ClearSelection();
 	selected_units[index] = true;
+	raid_array[index]->ControlUnit(true);
 }
 
 void ARaidManager::SelectUnit0()
@@ -92,6 +93,7 @@ void ARaidManager::ClearSelection()
 	for (int i = 0; i < selected_units.Num(); i++)
 	{
 		selected_units[i] = false;
+		raid_array[i]->ControlUnit(false);
 	}
 }
 

@@ -43,6 +43,8 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Status")
 	void CallSetPercent();
 
+	void ControlUnit(bool CanControl);
+
 	void CastAoE(int spell_id, FVector location);
 
 	

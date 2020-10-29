@@ -37,12 +37,13 @@ void AUnit::Tick(float DeltaTime)
 	else if (!this->has_command && this->current_target) {
 		float distance = this->GetDistanceTo(this->current_target);
 		if (distance > this->range) {
-			FVector targetVector = this->current_target->GetActorLocation() - this->GetActorLocation();
-			targetVector.Normalize();
-			FVector scaledLocation = targetVector * (-1 * this->range) + this->current_target->GetActorLocation();
-			this->MoveToLocation(scaledLocation);
-		}
-		else {
+			if (!this->is_player) {
+				FVector targetVector = this->current_target->GetActorLocation() - this->GetActorLocation();
+				targetVector.Normalize();
+				FVector scaledLocation = targetVector * (-1 * this->range) + this->current_target->GetActorLocation();
+				this->MoveToLocation(scaledLocation);
+			}
+		} else {
 			if (this->attack_countdown <= 0) {
 				this->AttackUnit(this->current_target);
 				this->attack_countdown = this->attack_speed;
@@ -90,6 +91,13 @@ void AUnit::SetNewTarget(AUnit* NewTarget)
 {
 	if (NewTarget != this)
 		this->current_target = NewTarget;
+
+	if (this->is_player)
+		this->MoveToLocation(this->GetActorLocation());
+}
+
+void AUnit::ControlUnit(bool CanControl) {
+	this->is_player = CanControl;
 }
 
 void AUnit::CastAoE(int spell_id, FVector location)

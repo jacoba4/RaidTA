@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "UnitDatabase.h"
 #include "RaidManager.h"
 #include "SpellDataAsset.h"
 #include "CoreMinimal.h"
@@ -28,16 +29,27 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	UFUNCTION(BlueprintCallable, Category = "Encounter")
-	void CastAoE(int spell_id, FVector location);
+	void CastSpell(int spell_id, FVector location);
 	UFUNCTION(BlueprintCallable, Category = "Encounter")
 	FVector RandomPlayerLocation();
+	UFUNCTION(BlueprintCallable, Category = "Encounter")
+	void AddNewPlayer(int index, FVector location);
+	UFUNCTION(BlueprintCallable, Category = "Encounter")
+	void AddNewPlayers(TArray<int> indexes, TArray<FVector> locations);
 
-	UPROPERTY(EditAnywhere)
+
+	UPROPERTY(EditAnywhere, Category = "Data")
 	USpellDatabase* spell_database;
+	UPROPERTY(EditAnywhere, Category = "Data")
+	UUnitDatabase* unit_database;
+	UPROPERTY(EditAnywhere, Category = "Data")
+	TSubclassOf<ARaidManager> raid_manager_bp;
+	UPROPERTY(EditAnywhere, Category = "Data")
+	int raid_size;
+
 
 	UPROPERTY(EditAnywhere)
 	ARaidManager* raid_manager;
+	
 
-	UPROPERTY(EditAnywhere)
-	UMaterial* indicator_material;
 };

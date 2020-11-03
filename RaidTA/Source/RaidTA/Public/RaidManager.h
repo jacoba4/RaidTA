@@ -24,6 +24,7 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent);
 	void SelectUnit(int index);
 	void SelectUnit0();
@@ -34,6 +35,8 @@ protected:
 	void SelectUnit5();
 	void SelectUnit6();
 	void SelectUnit7();
+	void SelectUnit8();
+	void SelectUnit9();
 	void ClearSelection();
 	void Click();
 	void SendMouseCoordinate(FVector location);
@@ -43,6 +46,7 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	void AddNewPlayer(TSubclassOf<AUnit> unit, FVector location);
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int raid_size;

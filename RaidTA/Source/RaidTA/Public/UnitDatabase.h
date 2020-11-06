@@ -14,7 +14,7 @@ UCLASS()
 class RAIDTA_API UUnitDatabase : public UDataAsset
 {
 	GENERATED_BODY()
-
+public:
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<AUnit> > units;
 };

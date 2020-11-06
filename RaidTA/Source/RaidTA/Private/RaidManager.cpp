@@ -21,11 +21,10 @@ ARaidManager::~ARaidManager()
 void ARaidManager::BeginPlay()
 {
 	Super::BeginPlay();
-		
+	raid_size = 0;
+	raid_array = TArray<AUnit*>();
 
-	UE_LOG(LogTemp, Warning, TEXT("Init"));
-	raid_size = raid_array.Num();
-	selected_units.Init(false, raid_size);
+	UE_LOG(LogTemp, Warning, TEXT("Init"));	
 }
 
 // Called every frame
@@ -35,12 +34,33 @@ void ARaidManager::Tick(float DeltaTime)
 
 }
 
+void ARaidManager::AddNewPlayer(TSubclassOf<AUnit> unit, FVector location)
+{
+	if (!unit)
+	{
+		return;
+	}
+
+	raid_size++;
+	AUnit* new_unit = GetWorld()->SpawnActor<AUnit>(unit, location, FRotator(0));
+	raid_array.Add(new_unit);
+	selected_units.Add(false);
+}
+
 void ARaidManager::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 	UE_LOG(LogTemp, Warning, TEXT("Input"));
 	//Super::SetupPlayerInputComponent(InputComponent);
 	InputComponent->BindAction("Select_Unit_0", IE_Pressed, this, &ARaidManager::SelectUnit0);
 	InputComponent->BindAction("Select_Unit_1", IE_Pressed, this, &ARaidManager::SelectUnit1);
+	InputComponent->BindAction("Select_Unit_2", IE_Pressed, this, &ARaidManager::SelectUnit2);
+	InputComponent->BindAction("Select_Unit_3", IE_Pressed, this, &ARaidManager::SelectUnit3);
+	InputComponent->BindAction("Select_Unit_4", IE_Pressed, this, &ARaidManager::SelectUnit4);
+	InputComponent->BindAction("Select_Unit_5", IE_Pressed, this, &ARaidManager::SelectUnit5);
+	InputComponent->BindAction("Select_Unit_6", IE_Pressed, this, &ARaidManager::SelectUnit6);
+	InputComponent->BindAction("Select_Unit_7", IE_Pressed, this, &ARaidManager::SelectUnit7);
+	InputComponent->BindAction("Select_Unit_8", IE_Pressed, this, &ARaidManager::SelectUnit8);
+	InputComponent->BindAction("Select_Unit_9", IE_Pressed, this, &ARaidManager::SelectUnit9);
 	InputComponent->BindAction("Click", IE_Pressed, this, &ARaidManager::Click);
 }
 
@@ -87,6 +107,15 @@ void ARaidManager::SelectUnit7()
 {
 	SelectUnit(7);
 }
+void ARaidManager::SelectUnit8()
+{
+	SelectUnit(8);
+}
+void ARaidManager::SelectUnit9()
+{
+	SelectUnit(9);
+}
+
 
 void ARaidManager::ClearSelection()
 {

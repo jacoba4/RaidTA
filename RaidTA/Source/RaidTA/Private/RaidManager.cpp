@@ -21,7 +21,8 @@ ARaidManager::~ARaidManager()
 void ARaidManager::BeginPlay()
 {
 	Super::BeginPlay();
-		
+	raid_size = 0;
+	raid_array = TArray<AUnit*>();
 
 	UE_LOG(LogTemp, Warning, TEXT("Init"));	
 }
@@ -35,7 +36,6 @@ void ARaidManager::Tick(float DeltaTime)
 
 void ARaidManager::AddNewPlayer(TSubclassOf<AUnit> unit, FVector location)
 {
-	//ADecalActor* decal = GetWorld()->SpawnActor<ADecalActor>(spell.spell_blueprint, location, FRotator(90, 0, 0));
 	if (!unit)
 	{
 		return;

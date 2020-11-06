@@ -19,8 +19,9 @@ AEncounter::AEncounter()
 // Called when the game starts or when spawned
 void AEncounter::BeginPlay()
 {
-	Super::BeginPlay();
 	SpawnRaid();
+	Super::BeginPlay();
+	
 }
 
 // Called every frame
@@ -58,10 +59,12 @@ FVector AEncounter::RandomPlayerLocation()
 
 void AEncounter::AddNewPlayer(int index, FVector location)
 {
-	if (index < 0 || index > unit_database->units.Num() - 1)
+	if (index < 0 || index > unit_database->units.Num() - 1 || !raid_manager)
 	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("AddNewPlayers"));
 		return;
 	}
+	
 	raid_manager->AddNewPlayer(unit_database->units[index], location);
 }
 

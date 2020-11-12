@@ -3,6 +3,7 @@
 #pragma once
 
 #include "UnitDatabase.h"
+#include "NPC.h"
 #include "RaidManager.h"
 #include "SpellDataAsset.h"
 #include "CoreMinimal.h"
@@ -36,6 +37,8 @@ public:
 	void AddNewPlayer(int index, FVector location);
 	UFUNCTION(BlueprintCallable, Category = "Encounter")
 	void AddNewPlayers(TArray<int> indexes, TArray<FVector> locations);
+	UFUNCTION(BlueprintCallable, Category = "Encounter")
+	void AddNewNPC(TSubclassOf<ANPC> npc, FVector location);
 
 
 	UPROPERTY(EditAnywhere, Category = "Data")

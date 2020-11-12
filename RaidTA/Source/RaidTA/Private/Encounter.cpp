@@ -83,3 +83,14 @@ void AEncounter::AddNewPlayers(TArray<int> indexes, TArray<FVector> locations)
 		AddNewPlayer(index, location);
 	}
 }
+
+void AEncounter::AddNewNPC(TSubclassOf<ANPC> npc, FVector location)
+{
+	if (!npc)
+	{
+		return;
+	}
+
+	ANPC* spawned = GetWorld()->SpawnActor<ANPC>(npc, location, FRotator(0));
+	spawned->InitTable(raid_manager->raid_array);
+}

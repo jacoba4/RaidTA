@@ -26,6 +26,9 @@ void AUnit::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (this->is_dead)
+		return;
+
 	if (this->has_command) {
 		FVector destinationLocation = FMath::VInterpConstantTo(this->GetActorLocation(), this->target_destination, DeltaTime, this->move_speed);
 		this->SetActorLocation(destinationLocation);
@@ -45,8 +48,12 @@ void AUnit::Tick(float DeltaTime)
 			}
 		}
 		else {
-			if (this->attack_countdown <= 0) {
+			if (this->attack_countdown <= 0 && !this->is_healer) {
 				this->AttackUnit(this->current_target);
+				this->attack_countdown = this->attack_speed;
+			}
+			else if (this->attack_countdown <= 0 && this->is_healer) {
+				this->HealUnit(this->current_target);
 				this->attack_countdown = this->attack_speed;
 			}
 			else {
@@ -77,6 +84,8 @@ float AUnit::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEve
 {
 	this->hp -= DamageAmount;
 	this->CallSetPercent();
+	if (this->hp <= 0)
+		this->is_dead = true;
 	return DamageAmount;
 }
 

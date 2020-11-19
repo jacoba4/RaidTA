@@ -71,6 +71,8 @@ public:
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	bool is_player;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	bool is_dead;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float attack_speed;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	float range;

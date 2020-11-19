@@ -33,10 +33,15 @@ public:
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent,
 		class AController* EventInstigator, class AActor* DamageCauser) override;
 
+	float TakeHealing(float HealAmount, struct FDamageEvent const& DamageEvent,
+		class AController* EventInstigator, class AActor* HealCauser);
+
 	// Called to teleport a Unit to a location
 	void MoveToLocation(FVector MoveLocation);
 
 	void AttackUnit(AUnit* Target);
+
+	void HealUnit(AUnit* Target);
 
 	void SetNewTarget(AUnit* NewTarget);
 
@@ -47,14 +52,20 @@ public:
 
 	void CastAoE(int spell_id, FVector location);
 
-	
+	void SendThreatDamage(float DamageDone);
 
+	void IncreaseThreat(AUnit* Instigator, float ThreatValue)
+	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int hp;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int damage;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	int healing;
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	int threat_mod;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	bool is_healer;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")

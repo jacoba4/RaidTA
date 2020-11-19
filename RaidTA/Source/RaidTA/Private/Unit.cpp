@@ -6,7 +6,7 @@
 // Sets default values
 AUnit::AUnit()
 {
- 	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
+	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -43,7 +43,8 @@ void AUnit::Tick(float DeltaTime)
 				FVector scaledLocation = targetVector * (-1 * this->range) + this->current_target->GetActorLocation();
 				this->MoveToLocation(scaledLocation);
 			}
-		} else {
+		}
+		else {
 			if (this->attack_countdown <= 0) {
 				this->AttackUnit(this->current_target);
 				this->attack_countdown = this->attack_speed;
@@ -79,12 +80,27 @@ float AUnit::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEve
 	return DamageAmount;
 }
 
+float AUnit::TakeHealing(float HealAmount, struct FDamageEvent const& DamageEvent,
+	class AController* EventInstigator, class AActor* HealCauser)
+{
+	this->hp += HealAmount;
+	this->CallSetPercent();
+	return HealAmount;
+}
+
 void AUnit::AttackUnit(AUnit* Target)
 {
 	FHitResult HitResult = FHitResult(this->GetActorLocation(), Target->GetActorLocation());
 	FPointDamageEvent DamageEvent = FPointDamageEvent(this->damage, HitResult, this->GetActorLocation(), UDamageType::StaticClass());
 	Target->TakeDamage(this->damage, DamageEvent, this->GetController(), this);
 	// Potential expansion for skills with different damage values, status effects, etc.
+}
+
+void AUnit::HealUnit(AUnit* Target)
+{
+	FHitResult HitResult = FHitResult(this->GetActorLocation(), Target->GetActorLocation());
+	FPointDamageEvent DamageEvent = FPointDamageEvent(this->damage, HitResult, this->GetActorLocation(), UDamageType::StaticClass());
+	Target->TakeHealing(this->healing, DamageEvent, this->GetController(), this);
 }
 
 void AUnit::SetNewTarget(AUnit* NewTarget)
@@ -96,8 +112,20 @@ void AUnit::SetNewTarget(AUnit* NewTarget)
 		this->MoveToLocation(this->GetActorLocation());
 }
 
-void AUnit::ControlUnit(bool CanControl) {
+void AUnit::ControlUnit(bool CanControl)
+{
 	this->is_player = CanControl;
+}
+
+void AUnit::SendThreatDamage(float DamageDone)
+{
+	this->current_target->IncreaseThreat(this, DamageDone*this->threat_mod);
+}
+
+void AUnit::IncreaseThreat(AUnit* Instigator, float ThreatValue)
+{
+	return;
+	// Method will be overriden by NPC Class
 }
 
 void AUnit::CastAoE(int spell_id, FVector location)

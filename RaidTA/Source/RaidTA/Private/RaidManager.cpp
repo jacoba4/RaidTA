@@ -34,6 +34,7 @@ void ARaidManager::Tick(float DeltaTime)
 
 }
 
+//void ARaidManager::AddNewPlayer(TSubclassOf<AUnit> unit, FVector location, AEncounter* encounter)
 void ARaidManager::AddNewPlayer(TSubclassOf<AUnit> unit, FVector location)
 {
 	if (!unit)
@@ -43,6 +44,7 @@ void ARaidManager::AddNewPlayer(TSubclassOf<AUnit> unit, FVector location)
 
 	raid_size++;
 	AUnit* new_unit = GetWorld()->SpawnActor<AUnit>(unit, location, FRotator(0));
+	//new_unit.encounter = encounter;
 	raid_array.Add(new_unit);
 	selected_units.Add(false);
 }

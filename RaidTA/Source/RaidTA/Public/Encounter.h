@@ -1,6 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
+
+
+
 #pragma once
+class ARaidManager;
+class AUnit;
 
 #include "UnitDatabase.h"
 #include "NPC.h"
@@ -39,7 +44,8 @@ public:
 	void AddNewPlayers(TArray<int> indexes, TArray<FVector> locations);
 	UFUNCTION(BlueprintCallable, Category = "Encounter")
 	void AddNewNPC(TSubclassOf<ANPC> npc, FVector location);
-
+	UFUNCTION(BlueprintCallable, Category = "Encounter")
+	void AddNewUnit(TSubclassOf<AUnit> unit, FVector location);
 
 	UPROPERTY(EditAnywhere, Category = "Data")
 	USpellDatabase* spell_database;

@@ -54,7 +54,7 @@ public:
 
 	void SendThreatDamage(float DamageDone);
 
-	void IncreaseThreat(AUnit* Instigator, float ThreatValue)
+	void IncreaseThreat(AUnit* Instigator, float ThreatValue);
 	
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	int max_hp;
@@ -84,6 +84,8 @@ public:
 	float move_speed;
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
 	AUnit* current_target;
+	//UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Raid")
+	//AEncounter* encounter;
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Raid")
 	FVector target_destination;

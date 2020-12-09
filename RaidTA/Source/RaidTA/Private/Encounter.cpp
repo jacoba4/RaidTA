@@ -94,3 +94,13 @@ void AEncounter::AddNewNPC(TSubclassOf<ANPC> npc, FVector location)
 	ANPC* spawned = GetWorld()->SpawnActor<ANPC>(npc, location, FRotator(0));
 	spawned->InitTable(raid_manager->raid_array);
 }
+
+void AEncounter::AddNewUnit(TSubclassOf<AUnit> unit, FVector location)
+{
+	if (!unit)
+	{
+		return;
+	}
+
+	AUnit* spawned = GetWorld()->SpawnActor<AUnit>(unit, location, FRotator(0));
+}

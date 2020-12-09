@@ -131,7 +131,7 @@ void AUnit::SendThreatDamage(float DamageDone)
 	this->current_target->IncreaseThreat(this, DamageDone*this->threat_mod);
 }
 
-void AUnit::IncreaseThreat(AUnit* Instigator, float ThreatValue)
+void AUnit::IncreaseThreat(AUnit* instigator, float ThreatValue)
 {
 	return;
 	// Method will be overriden by NPC Class

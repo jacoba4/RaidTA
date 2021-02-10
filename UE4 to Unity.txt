@@ -1,0 +1,159 @@
+UE4 to Unity
+
+Format:
+CurrentInUE4
+	Unity complement
+
+
+SpellDatabase
+		ScriptableObject
+			int SpellId
+			string name
+			SpellPrefab
+			
+		inside a "data" folder. use Resources.LoadAll()
+		
+UnitDatabase
+		same as SpellDatabase
+	
+		ScriptableObject
+			int UnitId
+			string name
+			UnitPrefab
+			
+		inside a "data" folder. Use Resources.LoadAll()
+
+Encounters 
+	Encounter parent class
+	specific encountes derive from this
+	
+	Functions
+		SpawnRaid()
+			spawns the RaidManager and all specified units
+	
+		CastSpell(int spell_id, Vector3 location)
+			casts specified spell at specified location
+		
+		RandomPlayerLocation()
+			gets a random player location from the RaidManager
+		
+		AddNewPlayer(int unit_id, Vector3 location)
+			adds specified unit to the RaidManager
+		
+		AddNewPlayers(Vector(?)<int> unit_ids, Vector(?)<Vector3> locations)
+			adds specified units to the raid manager
+		
+		AddNewNPC(int unit_id, Vector3 location)
+			adds npc to the encounter at location
+		
+		AddNewUnit(int unit_id, Vector3 location) (not sure why we have this one, could be good to keep in)
+			adds unit to the encounter at location
+		
+	Variables
+		RaidManager raidmanager
+		int raidsize
+		
+Unit
+	Parent class for all unit types
+	
+	Functions
+		TakeDamage() #could simplify? up to Brian
+			takes given amount of damage
+		
+		TakeHealing() #same as above
+			takes given amount of  healing
+			
+		MoveToLocation(Vector3 location)
+			moves to given location
+		
+		AttackUnit(Unit* target)
+			Attacks given unit
+		
+		HealUnit(Unit* target)
+			Heals given unit
+		
+		SetNewTarger(Unit* newtarget)
+			Sets target to given target
+		
+		CallSetPercent() #not sure, Brian's department :)
+		
+		ControlUnit(bool CanControl) #Brian
+		
+		CastSpell(int spell_id, Vector3 location)
+			spawns spell at location
+		
+		SendThreatDamage(float damagedone)
+			Sends threat to encounter
+		
+		IncreaseThreat(Unit* instigator, float threatvalue) #move to npc?
+			increases threat from instigator
+			
+	Variables
+		int max_hp
+		int hp
+		int damage
+		int healing
+		int thread_mod
+		bool is_healer
+		bool is_player
+		bool is_dead
+		float attack_speed
+		float range
+		bool has_command
+		float attack_countdown
+		float move_speed
+		Unit* current_target
+		Vector3 target_destination
+
+
+NPC
+	non player character class, derives from Unit
+	each specific NPC will derive and be on a prefab
+	
+	Functions
+		InitTable(units)
+			initializes threat table for given units
+		AddThreat(unit, threat)
+			increases unit's threat
+		Taunt(unit)
+			put unit's threat on top of table
+		CheckThreat()
+			checks threat table and adjusts target 
+		TableSortValue()
+			sorts table by value
+	
+	Variables
+		Dictionary<Unit*, float> threat_table
+
+RaidManager
+	handles the players
+	
+	Functions
+		AddNewPlayer(unit_id, location)
+			adds unit to the raidarray
+			
+		SelectUnit0-9
+			this can probably be moved into unity's input system
+			
+		ClearSelection()
+			clears current unit selection
+			
+		Click()
+			sends movement(via SendMouseCoordinate)/target(SendNewTarget) depending on what ray hits
+		
+		SendMouseCoordinate(Vector3 location)
+			sends location to selected unit(s)
+			
+		SendNewTarget(Unit* unit)
+			sends new target to selected unit(s)
+			
+	Variables
+		int raid_size
+		Vector(?)<Unit*> raid_array
+		Vector(?)<bool> selected_units
+		
+		
+		
+		
+		
+		

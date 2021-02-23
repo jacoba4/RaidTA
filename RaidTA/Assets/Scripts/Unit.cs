@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour
     public Vector3 target_destination;
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         attack_countdown = attack_speed;
     }
@@ -35,7 +35,7 @@ public class Unit : MonoBehaviour
         if (has_command) {
             transform.position = Vector3.MoveTowards(transform.position, target_destination, Time.deltaTime * move_speed);
 
-            if (transform.position = target_destination)
+            if (transform.position == target_destination)
                 has_command = false;
         } else if (!has_command && current_target) {
             float distance = Vector3.Distance(transform.position, current_target.transform.position);
@@ -85,22 +85,22 @@ public class Unit : MonoBehaviour
         target.TakeHealing(healing);
     }
 
-    void MoveToLocation(Vector3 location)
+    public void MoveToLocation(Vector3 location)
     {
         target_destination = location;
         has_command = true;
     }
 
-    void SetNewTarget(Unit new_target)
+    public void SetNewTarget(Unit new_target)
     {
         if (new_target != this)
             current_target = new_target;
         
         if (is_player)
-            MoveToLocation(new Vector3(transform.position));
+            MoveToLocation(new Vector3(transform.position.x,transform.position.y,transform.position.z));
     }
 
-    void ControlUnit(bool can_control)
+    public void ControlUnit(bool can_control)
     {
         is_player = can_control;
     }

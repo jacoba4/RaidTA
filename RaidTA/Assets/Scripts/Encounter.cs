@@ -32,7 +32,6 @@ public class Encounter : MonoBehaviour
 
     void SpawnRaid()
     {
-        Debug.Log("Spawning RaidManager");
         GameObject rm = new GameObject("RaidManager");
         raid_manager = rm.AddComponent(typeof(RaidManager)) as RaidManager;
         AddNewPlayers();
@@ -51,7 +50,6 @@ public class Encounter : MonoBehaviour
         if (unit_id < 0 || unit_id >= unit_db.units.Length) { return; }
         
         UnitSO unit = unit_db.units[unit_id];
-        Debug.Log(unit);
         raid_manager.AddNewPlayer(unit, location);  
     }
 

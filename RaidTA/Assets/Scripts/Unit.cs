@@ -4,15 +4,114 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    public int hp;
+    public int damage;
+    public int healing;
+    public int threat_mod;
+    public bool is_healer;
+    public bool is_player;
+    public bool is_dead;
+    public float attack_speed;
+    public float range;
+    public bool has_command;
+    public float attack_countdown;
+    public float move_speed;
+    public Unit current_target;
+
+    public Vector3 target_destination;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        attack_countdown = attack_speed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (is_dead)
+            return;
         
+        if (has_command) {
+            transform.position = Vector3.MoveTowards(transform.position, target_destination, Time.deltaTime * move_speed);
+
+            if (transform.position = target_destination)
+                has_command = false;
+        } else if (!has_command && current_target) {
+            float distance = Vector3.Distance(transform.position, current_target.transform.position);
+            if (distance > range && !is_player) {
+                Vector3 target_vector = current_target.transform.position - transform.position;
+                target_vector.Normalize();
+                transform.position = target_vector * (-1 * range) + current_target.transform.position;
+            } else {
+                if (attack_countdown <= 0 && !is_healer) {
+                    AttackUnit(current_target);
+                    attack_countdown = attack_speed;
+                } else if (attack_countdown <= 0 && is_healer) {
+                    HealUnit(current_target);
+                    attack_countdown = attack_speed;
+                } else {
+                    attack_countdown -= Time.deltaTime;
+                }
+            }
+        }
+
+        if (has_command || !current_target) {
+            attack_countdown = attack_speed;
+        }
+    }
+
+    int TakeDamage(int damage_amount)
+    {
+        hp -= damage_amount;
+        if (hp <= 0)
+            is_dead = true;
+        return damage_amount;
+    }
+
+    int TakeHealing(int heal_amount)
+    {
+        hp += heal_amount;
+        return heal_amount;
+    }
+
+    void AttackUnit(Unit target)
+    {
+        target.TakeDamage(damage);
+    }
+
+    void HealUnit(Unit target)
+    {
+        target.TakeHealing(healing);
+    }
+
+    void MoveToLocation(Vector3 location)
+    {
+        target_destination = location;
+        has_command = true;
+    }
+
+    void SetNewTarget(Unit new_target)
+    {
+        if (new_target != this)
+            current_target = new_target;
+        
+        if (is_player)
+            MoveToLocation(new Vector3(transform.position));
+    }
+
+    void ControlUnit(bool can_control)
+    {
+        is_player = can_control;
+    }
+
+    void CastSpell(int spell_id, Vector3 location)
+    {
+
+    }
+
+    void SendThreatDamage(int damage_amount)
+    {
+
     }
 }

@@ -1,26 +1,8 @@
-(Mostly) In order:
+Health bars
+Moving into range (somethin is wacked up atm)
+Healer targeting
+npc start attacking
 
-PC control
-	Click and drag to move
-	Right click for CD
-
-PC AI
-	Attack target
-	Move to target if out of range(?)
-	Heal allies
-
-Decide which raid to begin with. Probably better to go with an easier/more simple raid for now.
-
-Enemy AI
-	Encounter
-		Timers
-		Figure out best way to handle different fights without tons of repeat code
-	
-	Boss/Adds
-		Targeting
-		Moving to target (if needed)
-		Attack target
-		What happens on death
-		
-
-	
+later:
+	change TakeDamage function to not return damage past 0
+	change TakeHealing function to not return healing past max

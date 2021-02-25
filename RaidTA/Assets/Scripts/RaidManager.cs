@@ -6,6 +6,7 @@ public class RaidManager : MonoBehaviour
 {
     public List<Unit> unit_list;
     public List<bool> selected_units;
+    public Encounter encounter;
 
     // Start is called before the first frame update
     void Awake()
@@ -63,6 +64,9 @@ public class RaidManager : MonoBehaviour
     {
         unit_list.Add(Instantiate(unit.unit_prefab, location, Quaternion.identity).GetComponent<Unit>());
         selected_units.Add(false);
+
+        unit_list[unit_list.Count - 1].encounter = encounter;
+        unit_list[unit_list.Count - 1].name = unit.unit_name + " " + (unit_list.Count - 1).ToString();
     }
 
     public Vector3 RandomPlayerLocation()

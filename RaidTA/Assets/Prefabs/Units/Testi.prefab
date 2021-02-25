@@ -45,18 +45,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d086172a4e1dad4c801e44010f6071c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeleeRange: 3
   hp: 10
   damage: 1
   healing: 1
-  threat_mod: 0
+  attack_speed: 1
+  attack_countdown: 0
+  range: 50
+  threat_mod: 1
+  move_speed: 5
   is_healer: 0
   is_player: 1
   is_dead: 0
-  attack_speed: 1
-  range: 50
   has_command: 0
-  attack_countdown: 0
-  move_speed: 5
   current_target: {fileID: 0}
   target_destination: {x: 0, y: 0, z: 0}
 --- !u!212 &-1565663397900229940

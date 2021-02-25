@@ -4,21 +4,29 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
+    public float MeleeRange = 3f;
+
+    [Header("Stats")]
     public int hp;
     public int damage;
     public int healing;
+    public float attack_speed;
+    public float attack_countdown;
+    public float range;
     public int threat_mod;
+    public float move_speed;
+
+
+    [Header("Conditions")]
     public bool is_healer;
     public bool is_player;
     public bool is_dead;
-    public float attack_speed;
-    public float range;
     public bool has_command;
-    public float attack_countdown;
-    public float move_speed;
+    
+    [Header("Other")]
     public Unit current_target;
-
     public Vector3 target_destination;
+    public Encounter encounter;
 
     // Start is called before the first frame update
     public virtual void Start()
@@ -77,12 +85,12 @@ public class Unit : MonoBehaviour
 
     void AttackUnit(Unit target)
     {
-        target.TakeDamage(damage);
+        SendThreatDamage(target.TakeDamage(damage));
     }
 
     void HealUnit(Unit target)
     {
-        target.TakeHealing(healing);
+        SendThreatHealing(target.TakeHealing(healing));
     }
 
     public void MoveToLocation(Vector3 location)
@@ -112,6 +120,15 @@ public class Unit : MonoBehaviour
 
     void SendThreatDamage(int damage_amount)
     {
+        if(current_target is NPC)
+        {
+            NPC tar = (NPC)current_target;
+            tar.AddThreat(this, damage_amount * threat_mod);
+        }
+    }
 
+    void SendThreatHealing(int heal_amount)
+    {
+        encounter.BroadcastThreat(this, heal_amount * threat_mod);
     }
 }

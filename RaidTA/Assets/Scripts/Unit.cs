@@ -8,6 +8,7 @@ public class Unit : MonoBehaviour
 
     [Header("Stats")]
     public int hp;
+    public int max_hp;
     public int damage;
     public int healing;
     public float attack_speed;
@@ -21,11 +22,12 @@ public class Unit : MonoBehaviour
     public bool is_healer;
     public bool is_player;
     public bool is_dead;
-    public bool has_command;
+    public bool is_moving;
     
     [Header("Other")]
     public Unit current_target;
     public Vector3 target_destination;
+    public int target_distance;
     public Encounter encounter;
 
     // Start is called before the first frame update
@@ -40,33 +42,53 @@ public class Unit : MonoBehaviour
         if (is_dead)
             return;
         
-        if (has_command) {
+        if (is_moving) {
             transform.position = Vector3.MoveTowards(transform.position, target_destination, Time.deltaTime * move_speed);
+            is_moving = !(transform.position == target_destination);
+        } else if (!is_moving && current_target != null) {
+            bool isWithinRange = WithinRange();
+            MoveWithinRange(isWithinRange);
+            TargetAction(isWithinRange);
+        }
 
-            if (transform.position == target_destination)
-                has_command = false;
-        } else if (!has_command && current_target) {
-            float distance = Vector3.Distance(transform.position, current_target.transform.position);
-            if (distance > range && !is_player) {
-                Vector3 target_vector = current_target.transform.position - transform.position;
-                target_vector.Normalize();
-                transform.position = target_vector * (-1 * range) + current_target.transform.position;
+        if (is_moving || current_target == null) {
+            attack_countdown = attack_speed;
+        }
+    }
+
+    bool WithinRange()
+    {
+        float distance = Vector3.Distance(transform.position, current_target.transform.position);
+        return distance <= range;
+    }
+
+    void MoveWithinRange(bool isWithin)
+    {
+        if (!isWithin && !is_player) {
+            Vector3 target_vector = current_target.transform.position - transform.position;
+            target_vector.Normalize();
+            MoveToLocation(target_vector * (-1 * range) + current_target.transform.position);
+        }
+    }
+
+    bool TargetAction(bool isWithin)
+    {
+        if (isWithin) {
+            if (attack_countdown <= 0 && !is_healer) {
+                AttackUnit(current_target);
+                attack_countdown = attack_speed;
+                return true;
+            } else if (attack_countdown <= 0 && is_healer) {
+                HealUnit(current_target);
+                attack_countdown = attack_speed;
+                return true;
             } else {
-                if (attack_countdown <= 0 && !is_healer) {
-                    AttackUnit(current_target);
-                    attack_countdown = attack_speed;
-                } else if (attack_countdown <= 0 && is_healer) {
-                    HealUnit(current_target);
-                    attack_countdown = attack_speed;
-                } else {
-                    attack_countdown -= Time.deltaTime;
-                }
+                attack_countdown -= Time.deltaTime;
+                return false;
             }
         }
 
-        if (has_command || !current_target) {
-            attack_countdown = attack_speed;
-        }
+        return false;
     }
 
     public int TakeDamage(int damage_amount)
@@ -96,7 +118,7 @@ public class Unit : MonoBehaviour
     public void MoveToLocation(Vector3 location)
     {
         target_destination = location;
-        has_command = true;
+        is_moving = true;
     }
 
     public void SetNewTarget(Unit new_target)

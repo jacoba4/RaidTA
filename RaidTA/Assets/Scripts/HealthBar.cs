@@ -5,19 +5,17 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour
 {
 
-    public Unit owner;
-    Vector3 localScale;
+    private Transform bar;
 
     // Start is called before the first frame update
     void Start()
     {
-        localScale = transform.localScale;   
+        bar = transform.Find("Bar");
+        bar.localScale = new Vector3(1f, 1f);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetSize(float sizeNormalized)
     {
-        localScale.x = 0.2f * (owner.hp / owner.max_hp);
-        transform.localScale = localScale;
+        bar.localScale = new Vector3(sizeNormalized, 1f);
     }
 }

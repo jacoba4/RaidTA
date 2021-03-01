@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Unit : MonoBehaviour
 {
     protected float MeleeRange = 1.5f;
+    [SerializeField] private HealthBar hpBar;
 
     [Header("Stats")]
     public int hp;
@@ -40,6 +41,8 @@ public class Unit : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        // Instantiate(hpBar, transform.position, transform.rotation);
+        setHPBar();
         attack_countdown = attack_speed;
         lr = GetComponent<LineRenderer>();
     }
@@ -100,17 +103,24 @@ public class Unit : MonoBehaviour
         return false;
     }
 
+    void setHPBar()
+    {
+        hpBar.SetSize((float) hp / (float) max_hp);
+    }
+
     public int TakeDamage(int damage_amount)
     {
         hp -= damage_amount;
         if (hp <= 0)
             is_dead = true;
+        setHPBar();
         return damage_amount;
     }
 
     int TakeHealing(int heal_amount)
     {
         hp += heal_amount;
+        setHPBar();
         return heal_amount;
     }
 

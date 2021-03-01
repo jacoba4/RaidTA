@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
-    protected float MeleeRange = 3f;
+    protected float MeleeRange = 1.5f;
 
     [Header("Stats")]
     public int hp;
@@ -29,18 +30,28 @@ public class Unit : MonoBehaviour
     public Vector3 target_destination;
     public int target_distance;
     public Encounter encounter;
+    public Text number;
+    public LineRenderer lr;
 
+    public virtual void Awake()
+    {
+        number = GetComponentInChildren<Text>();
+    }
     // Start is called before the first frame update
     public virtual void Start()
     {
         attack_countdown = attack_speed;
+        lr = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        RenderLine();
         if (is_dead)
             return;
+
+        
         
         if (is_moving) {
             transform.position = Vector3.MoveTowards(transform.position, target_destination, Time.deltaTime * move_speed);
@@ -64,7 +75,7 @@ public class Unit : MonoBehaviour
 
     void MoveWithinRange(bool isWithin)
     {
-        if (!isWithin && !is_player) {
+        if (!isWithin) {
             Vector3 target_vector = current_target.transform.position - transform.position;
             target_vector.Normalize();
             MoveToLocation(target_vector * (-1 * range) + current_target.transform.position);
@@ -107,11 +118,13 @@ public class Unit : MonoBehaviour
 
     void AttackUnit(Unit target)
     {
+        current_target.TakeDamage(damage);
         SendThreatDamage(target.TakeDamage(damage));
     }
 
     void HealUnit(Unit target)
     {
+        current_target.TakeHealing(healing);
         SendThreatHealing(target.TakeHealing(healing));
     }
 
@@ -152,5 +165,15 @@ public class Unit : MonoBehaviour
     void SendThreatHealing(int heal_amount)
     {
         encounter.BroadcastThreat(this, heal_amount * threat_mod);
+    }
+
+    void RenderLine()
+    {
+        lr.SetPosition(0, transform.position);
+        lr.SetPosition(1, transform.position);
+        if(current_target != null && !is_dead)
+        {
+            lr.SetPosition(1, current_target.transform.position);
+        }
     }
 }

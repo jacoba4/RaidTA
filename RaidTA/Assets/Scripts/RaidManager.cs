@@ -63,8 +63,10 @@ public class RaidManager : MonoBehaviour
     {
         unit_list.Add(Instantiate(unit.unit_prefab, location, Quaternion.identity).GetComponent<Unit>());
 
-        unit_list[unit_list.Count - 1].encounter = encounter;
-        unit_list[unit_list.Count - 1].name = unit.unit_name + " (" + (unit_list.Count).ToString() + ")";
+        Unit new_unit = unit_list[unit_list.Count - 1];
+        new_unit.encounter = encounter;
+        new_unit.name = unit.unit_name + " (" + (unit_list.Count).ToString() + ")";
+        new_unit.number.text = (unit_list.Count).ToString();
     }
 
     public Vector3 RandomPlayerLocation()
@@ -101,17 +103,14 @@ public class RaidManager : MonoBehaviour
         {
             if(hitData.transform.tag == "NPC" && !selected_unit.is_healer)
             {
-                Debug.Log("Sending new target: " + hitData.transform.name);
                 selected_unit.SetNewTarget(hitData.transform.GetComponent<NPC>());
             }
             else if(hitData.transform.tag == "Player" && selected_unit.is_healer)
             {
-                Debug.Log("Sending new healing target: " + hitData.transform.name);
                 selected_unit.SetNewTarget(hitData.transform.GetComponent<Unit>());
             }
             else
             {
-                Debug.Log("Sending new location: " + hitData.point);
                 selected_unit.MoveToLocation(hitData.point);
             }
         }

@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d086172a4e1dad4c801e44010f6071c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleeRange: 3
+  hpBar: {fileID: 3105396133114999534, guid: 0419c48ddcea0bf4891dba66c89a833d, type: 3}
   hp: 10
+  max_hp: 0
   damage: 1
   healing: 1
   attack_speed: 1
@@ -57,9 +58,10 @@ MonoBehaviour:
   is_healer: 0
   is_player: 1
   is_dead: 0
-  has_command: 0
+  is_moving: 0
   current_target: {fileID: 0}
   target_destination: {x: 0, y: 0, z: 0}
+  target_distance: 0
   encounter: {fileID: 0}
 --- !u!212 &-1565663397900229940
 SpriteRenderer:

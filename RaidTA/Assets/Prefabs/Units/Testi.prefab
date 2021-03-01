@@ -60,6 +60,7 @@ MonoBehaviour:
   has_command: 0
   current_target: {fileID: 0}
   target_destination: {x: 0, y: 0, z: 0}
+  encounter: {fileID: 0}
 --- !u!212 &-1565663397900229940
 SpriteRenderer:
   m_ObjectHideFlags: 0

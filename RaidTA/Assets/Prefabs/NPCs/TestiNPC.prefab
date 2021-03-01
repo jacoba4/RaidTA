@@ -124,4 +124,5 @@ MonoBehaviour:
   has_command: 0
   current_target: {fileID: 0}
   target_destination: {x: 0, y: 0, z: 0}
+  encounter: {fileID: 0}
   threat_table: []

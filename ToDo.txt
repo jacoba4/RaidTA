@@ -1,5 +1,0 @@
-Health bars
-
-later:
-	change TakeDamage function to not return damage past 0
-	change TakeHealing function to not return healing past max

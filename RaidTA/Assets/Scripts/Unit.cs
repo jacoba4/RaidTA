@@ -37,6 +37,9 @@ public class Unit : MonoBehaviour
     public virtual void Awake()
     {
         number = GetComponentInChildren<Text>();
+        lr = GetComponent<LineRenderer>();
+        hpBar = GetComponentInChildren<HealthBar>();
+        hp = max_hp;
     }
     // Start is called before the first frame update
     public virtual void Start()
@@ -44,11 +47,11 @@ public class Unit : MonoBehaviour
         // Instantiate(hpBar, transform.position, transform.rotation);
         setHPBar();
         attack_countdown = attack_speed;
-        lr = GetComponent<LineRenderer>();
+        
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         RenderLine();
         if (is_dead)
@@ -58,9 +61,17 @@ public class Unit : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target_destination, Time.deltaTime * move_speed);
             is_moving = !(transform.position == target_destination);
         } else if (!is_moving && current_target != null) {
-            bool isWithinRange = WithinRange();
-            MoveWithinRange(isWithinRange);
-            TargetAction(isWithinRange);
+            if(current_target.is_dead) 
+            { 
+                current_target = null; 
+
+            }
+            else
+            {
+                bool isWithinRange = WithinRange();
+                MoveWithinRange(isWithinRange);
+                TargetAction(isWithinRange);
+            }      
         }
 
         if (is_moving || current_target == null) {
@@ -112,7 +123,12 @@ public class Unit : MonoBehaviour
     {
         hp -= damage_amount;
         if (hp <= 0)
+        {
             is_dead = true;
+            hp = 0;
+        }
+            
+         
         setHPBar();
         return damage_amount;
     }
@@ -120,6 +136,10 @@ public class Unit : MonoBehaviour
     int TakeHealing(int heal_amount)
     {
         hp += heal_amount;
+        if(hp > max_hp)
+        {
+            hp = max_hp;
+        }
         setHPBar();
         return heal_amount;
     }
@@ -146,9 +166,15 @@ public class Unit : MonoBehaviour
     {
         if (new_target != this)
             current_target = new_target;
-        
-        if (is_player)
-            MoveToLocation(new Vector3(transform.position.x,transform.position.y,transform.position.z));
+        else if(is_healer)
+        {
+            current_target = new_target;
+        }
+
+        attack_countdown = attack_speed;
+
+        //if (is_player)
+        //    MoveToLocation(new Vector3(transform.position.x,transform.position.y,transform.position.z));
     }
 
     public void ControlUnit(bool can_control)

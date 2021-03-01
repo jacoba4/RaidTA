@@ -32,15 +32,39 @@ public class NPC : Unit
 
     public List<ThreatEntry> threat_table;
 
+
+    protected override void Update()
+    {
+        base.Update();
+        if(current_target != null)
+        {
+            CheckTarget();
+        }
+        else
+        {
+            CheckThreat();
+        }
+    }
     public void InitTable(List<Unit> units)
     {
         for (int i = 0; i < units.Count; i++)
         {
             ThreatEntry temp;
             temp.unit = units[i];
-            temp.threat = 0;
+
+            if(i == 0)
+            {
+                temp.threat = 5;
+            }
+            else
+            {
+                temp.threat = 1;
+            }
+            
             threat_table.Add(temp);
         }
+
+
     }
 
     public void AddThreat(Unit unit, float threat)
@@ -102,6 +126,7 @@ public class NPC : Unit
         Sort();
         ThreatEntry current = FindEntry(current_target);
         ThreatEntry top = threat_table[0];
+        if(top.threat == 0) { return; }
         float distance = Vector3.Distance(transform.position, top.unit.transform.position);
         if (current.unit != top.unit)
         {
@@ -129,6 +154,18 @@ public class NPC : Unit
             Debug.Log(threat_table[i].unit.name + "   -   " + threat_table[i].threat);
         }
         Debug.Log("------------------(" + new string('-', gameObject.name.Length) + ")------------------");
+    }
+
+    void CheckTarget()
+    {
+        if (current_target == null) { return; }
+        if (current_target.hp == 0)
+        {
+            ThreatEntry temp = FindEntry(current_target);
+            temp.threat = 0;
+            ReplaceEntry(temp);
+            CheckThreat();
+        }
     }
 
 }

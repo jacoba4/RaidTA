@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class test_encounter : Encounter
 {
@@ -9,6 +10,25 @@ public class test_encounter : Encounter
     {
         base.Start();
         StartCoroutine("RaidDamage");
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if(npc_list[0].hp == 0)
+        {
+            SceneManager.LoadScene("YouWin");
+        }
+
+        for(int i = 0; i < raid_manager.unit_list.Count; i++)
+        {
+            if(raid_manager.unit_list[i].hp > 0)
+            {
+                return;
+            }
+        }
+
+        SceneManager.LoadScene("YouLose");
     }
     protected override void AddNewPlayers()
     {

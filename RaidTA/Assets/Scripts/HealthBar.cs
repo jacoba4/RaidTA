@@ -8,7 +8,7 @@ public class HealthBar : MonoBehaviour
     private Transform bar;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         bar = transform.Find("Bar");
         bar.localScale = new Vector3(1f, 1f);

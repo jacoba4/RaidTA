@@ -114,10 +114,10 @@ MonoBehaviour:
   damage: 1
   healing: 0
   attack_speed: 1
-  attack_countdown: 0
+  attack_countdown: 1
   range: 50
   threat_mod: 0
-  move_speed: 0
+  move_speed: 1
   is_healer: 0
   is_player: 0
   is_dead: 0

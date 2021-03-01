@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public float MeleeRange = 3f;
+    protected float MeleeRange = 3f;
 
     [Header("Stats")]
     public int hp;

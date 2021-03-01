@@ -5,14 +5,13 @@ using UnityEngine;
 public class RaidManager : MonoBehaviour
 {
     public List<Unit> unit_list;
-    public List<bool> selected_units;
+    public Unit selected_unit;
     public Encounter encounter;
 
     // Start is called before the first frame update
     void Awake()
     {
         unit_list = new List<Unit>();
-        selected_units = new List<bool>();
     }
 
     // Update is called once per frame
@@ -63,7 +62,6 @@ public class RaidManager : MonoBehaviour
     public void AddNewPlayer(UnitSO unit, Vector3 location)
     {
         unit_list.Add(Instantiate(unit.unit_prefab, location, Quaternion.identity).GetComponent<Unit>());
-        selected_units.Add(false);
 
         unit_list[unit_list.Count - 1].encounter = encounter;
         unit_list[unit_list.Count - 1].name = unit.unit_name + " " + (unit_list.Count - 1).ToString();
@@ -84,56 +82,37 @@ public class RaidManager : MonoBehaviour
             return;
         }
         ClearSelection();
-        selected_units[index] = true;
+        selected_unit = unit_list[index];
         unit_list[index].GetComponent<Unit>().ControlUnit(true);
 
     }
 
     void ClearSelection()
     {
-        for(int i = 0; i < selected_units.Count; i++)
-        {
-            selected_units[i] = false;
-        }
+        selected_unit = null;
     }
 
     void Click()
     {
+        if(selected_unit == null) { return; }
         RaycastHit hitData;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hitData))
         {
-            if(hitData.transform.tag == "NPC")
+            if(hitData.transform.tag == "NPC" && !selected_unit.is_healer)
             {
                 Debug.Log("Sending new target: " + hitData.transform.name);
-                SendNewTarget(hitData.transform.GetComponent<NPC>());
+                selected_unit.SetNewTarget(hitData.transform.GetComponent<NPC>());
+            }
+            else if(hitData.transform.tag == "Player" && selected_unit.is_healer)
+            {
+                Debug.Log("Sending new healing target: " + hitData.transform.name);
+                selected_unit.SetNewTarget(hitData.transform.GetComponent<Unit>());
             }
             else
             {
                 Debug.Log("Sending new location: " + hitData.point);
-                SendMouseCoordinate(hitData.point);
-            }
-        }
-    }
-
-    void SendNewTarget(NPC npc)
-    {
-        for(int i = 0; i < selected_units.Count; i++)
-        {
-            if(selected_units[i])
-            {
-                unit_list[i].GetComponent<Unit>().SetNewTarget(npc);
-            }
-        }
-    }
-
-    void SendMouseCoordinate(Vector3 pos)
-    {
-        for (int i = 0; i < selected_units.Count; i++)
-        {
-            if(selected_units[i])
-            {
-                unit_list[i].GetComponent<Unit>().MoveToLocation(pos);
+                selected_unit.MoveToLocation(hitData.point);
             }
         }
     }

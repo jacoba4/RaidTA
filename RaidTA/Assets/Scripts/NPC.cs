@@ -32,18 +32,6 @@ public class NPC : Unit
 
     public List<ThreatEntry> threat_table;
 
-    // Start is called before the first frame update
-    public override void Start()
-    {
-        base.Start();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-   
-    }
-
     public void InitTable(List<Unit> units)
     {
         for (int i = 0; i < units.Count; i++)

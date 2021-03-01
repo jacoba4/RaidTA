@@ -1,7 +1,4 @@
 Health bars
-Moving into range (somethin is wacked up atm)
-Healer targeting
-npc start attacking
 
 later:
 	change TakeDamage function to not return damage past 0

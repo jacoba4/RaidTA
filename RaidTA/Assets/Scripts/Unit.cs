@@ -50,9 +50,7 @@ public class Unit : MonoBehaviour
         RenderLine();
         if (is_dead)
             return;
-
-        
-        
+ 
         if (is_moving) {
             transform.position = Vector3.MoveTowards(transform.position, target_destination, Time.deltaTime * move_speed);
             is_moving = !(transform.position == target_destination);

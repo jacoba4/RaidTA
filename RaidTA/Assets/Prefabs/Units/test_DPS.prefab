@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1565663397900229940}
   - component: {fileID: -4681267539224283728}
   m_Layer: 0
-  m_Name: Testi
+  m_Name: test_DPS
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2807206630241229601}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.83143723, y: 0.27365473, z: 3.0718737}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d086172a4e1dad4c801e44010f6071c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleeRange: 3
   hp: 10
-  damage: 1
+  damage: 2
   healing: 1
   attack_speed: 1
   attack_countdown: 0
-  range: 50
+  range: 2
   threat_mod: 1
   move_speed: 5
   is_healer: 0
@@ -60,6 +59,7 @@ MonoBehaviour:
   has_command: 0
   current_target: {fileID: 0}
   target_destination: {x: 0, y: 0, z: 0}
+  encounter: {fileID: 0}
 --- !u!212 &-1565663397900229940
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -101,7 +101,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

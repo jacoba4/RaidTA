@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cbb1950ccdfd63c4bb7b1d2f8b8e15ad, type: 3}
-  m_Name: test_unit
+  m_Name: test_Tank
   m_EditorClassIdentifier: 
-  unit_name: testi
-  unit_prefab: {fileID: 2807206630241229601, guid: 10206e1146012854cb466be5f12a35ab, type: 3}
+  unit_name: test_Tank
+  unit_prefab: {fileID: 6250791161585649301, guid: 33110b4688e541441be0dc717366073f, type: 3}

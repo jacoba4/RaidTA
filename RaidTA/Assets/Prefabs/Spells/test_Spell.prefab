@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1741998768882344906
+--- !u!1 &8672173208363230036
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,37 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7410005056292595451}
-  - component: {fileID: 6096823068872890919}
-  - component: {fileID: 130932944347336027}
-  - component: {fileID: 5119863888376985132}
+  - component: {fileID: 8672173208363230041}
+  - component: {fileID: 8672173208363230038}
+  - component: {fileID: 8672173208363230040}
   m_Layer: 0
-  m_Name: TestiNPC
-  m_TagString: NPC
+  m_Name: test_Spell
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7410005056292595451
+--- !u!4 &8672173208363230041
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741998768882344906}
+  m_GameObject: {fileID: 8672173208363230036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.83143723, y: 0.27365473, z: 3.0718737}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 15, y: 15, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6096823068872890919
+--- !u!212 &8672173208363230038
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741998768882344906}
+  m_GameObject: {fileID: 8672173208363230036}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -73,56 +72,29 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.39215687}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.2, y: 0.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &130932944347336027
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741998768882344906}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.16, z: 0.2}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5119863888376985132
+--- !u!114 &8672173208363230040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1741998768882344906}
+  m_GameObject: {fileID: 8672173208363230036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9e886592c681fb4d8c0732a43d7a294, type: 3}
+  m_Script: {fileID: 11500000, guid: 0cffc20e7ff6c9b41a82d23ddab3299f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MeleeRange: 3
-  hp: 100
-  damage: 1
-  healing: 0
-  attack_speed: 1
-  attack_countdown: 1
-  range: 50
-  threat_mod: 0
-  move_speed: 1
-  is_healer: 0
-  is_player: 0
-  is_dead: 0
-  has_command: 0
-  current_target: {fileID: 0}
-  target_destination: {x: 0, y: 0, z: 0}
-  encounter: {fileID: 0}
-  threat_table: []
+  detonation_time: 2
+  damage: 5
+  radius: 0.09

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: UnitDatabase
   m_EditorClassIdentifier: 
   units:
+  - {fileID: 11400000, guid: df53721292ce56f41adf5a4e12b83ff9, type: 2}
+  - {fileID: 11400000, guid: 19afe2a057448d845add64683baadd1a, type: 2}
   - {fileID: 11400000, guid: dff24c30d46ff9c4db43a3697d18486a, type: 2}

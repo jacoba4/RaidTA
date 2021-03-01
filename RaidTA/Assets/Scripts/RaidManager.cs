@@ -64,7 +64,7 @@ public class RaidManager : MonoBehaviour
         unit_list.Add(Instantiate(unit.unit_prefab, location, Quaternion.identity).GetComponent<Unit>());
 
         unit_list[unit_list.Count - 1].encounter = encounter;
-        unit_list[unit_list.Count - 1].name = unit.unit_name + " " + (unit_list.Count - 1).ToString();
+        unit_list[unit_list.Count - 1].name = unit.unit_name + " (" + (unit_list.Count).ToString() + ")";
     }
 
     public Vector3 RandomPlayerLocation()
@@ -114,6 +114,14 @@ public class RaidManager : MonoBehaviour
                 Debug.Log("Sending new location: " + hitData.point);
                 selected_unit.MoveToLocation(hitData.point);
             }
+        }
+    }
+
+    public void DamageRaid(int damage)
+    {
+        for(int i = 0; i < unit_list.Count; i++)
+        {
+            unit_list[i].TakeDamage(damage);
         }
     }
 }

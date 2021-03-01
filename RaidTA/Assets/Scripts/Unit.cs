@@ -69,7 +69,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    int TakeDamage(int damage_amount)
+    public int TakeDamage(int damage_amount)
     {
         hp -= damage_amount;
         if (hp <= 0)

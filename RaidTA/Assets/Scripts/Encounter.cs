@@ -10,7 +10,9 @@ public class Encounter : MonoBehaviour
 
     public List<NPC> npc_list;
 
-    RaidManager raid_manager;
+    protected RaidManager raid_manager;
+
+    public float encountertime;
 
 
     // Start is called before the first frame update
@@ -22,14 +24,14 @@ public class Encounter : MonoBehaviour
         SpawnRaid();
         AddNewNPCs(raid_manager.unit_list);
         InitThreatTables();
-        
+        encountertime = 0;
     }
  
 
     // Update is called once per frame
     void Update()
     {
-        
+        encountertime += Time.deltaTime;
     }
 
     void SpawnRaid()
@@ -40,7 +42,7 @@ public class Encounter : MonoBehaviour
         AddNewPlayers();
     }
 
-    void CastSpell(int spell_id, Vector3 location)
+    protected void CastSpell(int spell_id, Vector3 location)
     {
         if(spell_id < 0 || spell_id >= spell_db.spells.Length)  { return; }
         if(spell_db.spells[spell_id].spell_prefab == null) { return; }
@@ -68,6 +70,7 @@ public class Encounter : MonoBehaviour
         NPCSO npc = npc_db.npcs[npc_id];
         npc_list.Add(Instantiate(npc.npc_prefab, location, Quaternion.identity).GetComponent<NPC>());
         npc_list[npc_list.Count - 1].encounter = this;
+        npc_list[npc_list.Count - 1].name = npc.name;
     }
 
     protected virtual void AddNewNPCs(List<Unit> units)

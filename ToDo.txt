@@ -1,0 +1,3 @@
+Pre encounter editing
+	Drag and drop units into scene
+	Edit their stats

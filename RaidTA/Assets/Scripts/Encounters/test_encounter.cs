@@ -6,10 +6,18 @@ using UnityEngine.SceneManagement;
 public class test_encounter : Encounter
 {
 
-    protected override void Start()
+    private List<SetupManager.UnitEntry> unitEntries;
+
+    public void Init(List<SetupManager.UnitEntry> smEntries)
     {
+        unitEntries = smEntries;
         base.Start();
         StartCoroutine("RaidDamage");
+    }
+
+    protected override void Start()
+    {
+        
     }
 
     protected override void Update()
@@ -30,19 +38,36 @@ public class test_encounter : Encounter
 
         SceneManager.LoadScene("YouLose");
     }
+
     protected override void AddNewPlayers()
     {
         base.AddNewPlayers();
+
+        foreach(SetupManager.UnitEntry unit in this.unitEntries)
+        {
+            AddNewPlayer(unit.unitID, unit.unitPos);
+        }
+
+        Debug.Log("Unit Count: " + this.raid_manager.unit_list.Count);
+
+        /*
         AddNewPlayer(0, new Vector3(0, 2, 0));
         AddNewPlayer(1, new Vector3(0, 0, 0));
         AddNewPlayer(2, new Vector3(-2, 0, 0));
         AddNewPlayer(2, new Vector3(0, -2, 0));
         AddNewPlayer(2, new Vector3(2, 0, 0));
+        */
     }
 
     protected override void AddNewNPCs(List<Unit> units)
     {
         AddNewNPC(0, new Vector3(0, 4, 0));
+        Debug.Log("NPC Count: " + this.npc_list.Count);
+    }
+
+    public void SetUnitList(List<SetupManager.UnitEntry> units)
+    {
+        this.unitEntries = units;
     }
 
     IEnumerator RaidDamage()

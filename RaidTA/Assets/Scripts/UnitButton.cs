@@ -14,6 +14,7 @@ public class UnitButton : MonoBehaviour
     private Color color;
 
     public int unitCount = 0;
+    public int unitID;
 
     public GameObject UnitPrefab
     {

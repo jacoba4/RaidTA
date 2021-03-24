@@ -180,6 +180,8 @@ public class Unit : MonoBehaviour
     public void ControlUnit(bool can_control)
     {
         is_player = can_control;
+        if (is_player) { GetComponent<SpriteOutline>().OnEnable(); }
+        else { GetComponent<SpriteOutline>().OnDisable(); }
     }
 
     void CastSpell(int spell_id, Vector3 location)

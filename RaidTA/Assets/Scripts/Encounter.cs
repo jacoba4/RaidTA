@@ -14,19 +14,18 @@ public class Encounter : MonoBehaviour
 
     public float encountertime;
 
-
     // Start is called before the first frame update
     protected virtual void Start()
     {
         spell_db = (SpellDB) Resources.Load("SpellDatabase");
         unit_db = (UnitDB) Resources.Load("UnitDatabase");
         npc_db = (NPCDB) Resources.Load("NPCDatabase");
+        npc_list = new List<NPC>();
         SpawnRaid();
         AddNewNPCs(raid_manager.unit_list);
         InitThreatTables();
         encountertime = 0;
     }
- 
 
     // Update is called once per frame
     protected virtual void Update()

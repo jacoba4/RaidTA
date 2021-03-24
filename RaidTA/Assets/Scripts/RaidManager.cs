@@ -91,6 +91,7 @@ public class RaidManager : MonoBehaviour
 
     void ClearSelection()
     {
+        if (selected_unit != null) { selected_unit.GetComponent<Unit>().ControlUnit(false); }
         selected_unit = null;
     }
 
@@ -109,10 +110,12 @@ public class RaidManager : MonoBehaviour
             {
                 selected_unit.SetNewTarget(hitData.transform.GetComponent<Unit>());
             }
-            else
-            {
-                selected_unit.MoveToLocation(hitData.point);
-            }
+        }
+        else
+        {
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            worldPos.z = 1;
+            selected_unit.MoveToLocation(worldPos);
         }
     }
 

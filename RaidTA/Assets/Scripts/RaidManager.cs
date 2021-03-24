@@ -91,6 +91,7 @@ public class RaidManager : MonoBehaviour
 
     void ClearSelection()
     {
+        if (selected_unit != null) { selected_unit.GetComponent<Unit>().ControlUnit(false); }
         selected_unit = null;
     }
 

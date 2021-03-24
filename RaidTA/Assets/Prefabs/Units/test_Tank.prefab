@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 1640899800951118276}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_Children: []
   m_Father: {fileID: 6831837228420818319}
   m_RootOrder: 0
@@ -67,16 +67,16 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 10
+    m_FontSize: 150
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 40
+    m_MaxSize: 150
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: x
 --- !u!1 &4418464388949541168
@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 421002976098350367}
   - component: {fileID: 2368330950479786988}
   - component: {fileID: -2556721965522095599}
+  - component: {fileID: 1537972722315651849}
   m_Layer: 0
   m_Name: test_Tank
   m_TagString: Player
@@ -230,7 +231,7 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   hp: 0
   max_hp: 50
-  damage: 1
+  damage: 3
   healing: 1
   attack_speed: 1
   attack_countdown: 0
@@ -266,7 +267,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: bff7a772e6f41ec4b9fa9925ceec0bb7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -409,6 +410,19 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1537972722315651849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250791161585649301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ac87377702328340a045791ec284ae0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &7452908843842647082
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -179,7 +179,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   unitCount: 0
-  unitID: 0
+  unitID: -1
 --- !u!114 &222078978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,7 +415,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   unitCount: 0
-  unitID: 1
+  unitID: 0
 --- !u!114 &515719258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +882,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
   unitCount: 0
-  unitID: 0
+  unitID: 1
 --- !u!114 &1136118157
 MonoBehaviour:
   m_ObjectHideFlags: 0

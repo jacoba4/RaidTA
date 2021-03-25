@@ -18,6 +18,7 @@ public class SetupManager : MonoBehaviour
     private List<UnitEntry> unitEntries;
     private int partyCount = 0;
     private int partyLimit = 6;
+    EditMenu editMenu;
 
     protected test_encounter encounter;
 
@@ -26,6 +27,7 @@ public class SetupManager : MonoBehaviour
     {
         unitList = new List<GameObject>();
         unitEntries = new List<UnitEntry>();
+        editMenu = GameObject.Find("EditMenu").GetComponent<EditMenu>();
     }
 
     // Update is called once per frame
@@ -49,7 +51,22 @@ public class SetupManager : MonoBehaviour
 
     private void PlaceUnit()
     {
-        if (!EventSystem.current.IsPointerOverGameObject() && this.clickedButton != null && this.partyCount < this.partyLimit)
+        if (this.clickedButton == null){ return; }
+
+        if (clickedButton.UnitPrefab == null)
+        {
+            //This means EditButton is selected
+            RaycastHit hitData;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hitData))
+            {
+                if(hitData.transform.tag == "Player")
+                {
+                    editMenu.LoadUnit(hitData.transform.GetComponent<Unit>());
+                }
+            }       
+        }
+        else if (!EventSystem.current.IsPointerOverGameObject() && this.partyCount < this.partyLimit)
         {
             this.clickedButton.unitCount += 1;
             GameObject unit = (GameObject) Instantiate(this.clickedButton.UnitPrefab, transform.position, Quaternion.identity);

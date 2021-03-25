@@ -43,9 +43,12 @@ public class UnitButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpriteRenderer prefabSpriteRenderer = UnitPrefab.GetComponent<SpriteRenderer>();
-        this.sprite = prefabSpriteRenderer.sprite;
-        this.color = prefabSpriteRenderer.color;
+        if(unitPrefab != null)
+        {
+            SpriteRenderer prefabSpriteRenderer = UnitPrefab.GetComponent<SpriteRenderer>();
+            this.sprite = prefabSpriteRenderer.sprite;
+            this.color = prefabSpriteRenderer.color;
+        }
     }
 
     // Update is called once per frame

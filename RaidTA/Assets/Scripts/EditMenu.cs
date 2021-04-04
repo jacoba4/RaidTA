@@ -75,6 +75,7 @@ public class EditMenu : MonoBehaviour
     public void SetHealth()
     {
         unit.max_hp = int.Parse(hp.text);
+        unit.hp = int.Parse(hp.text);
     }
 
     public void SetDamage()

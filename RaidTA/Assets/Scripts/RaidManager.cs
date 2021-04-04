@@ -54,9 +54,17 @@ public class RaidManager : MonoBehaviour
         {
             SelectUnit(7);
         }
+    }
 
-
-
+    public void SetPlayers(List<Unit> inc_unit_list)
+    {
+        this.unit_list = inc_unit_list;
+        for (int i = 0; i < this.unit_list.Count; i++)
+        {
+            this.unit_list[i].encounter = encounter;
+            this.unit_list[i].enabled = true;
+            this.unit_list[i].ControlUnit(false);
+        }
     }
 
     public void AddNewPlayer(UnitSO unit, Vector3 location)

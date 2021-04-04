@@ -7,10 +7,11 @@ public class test_encounter : Encounter
 {
 
     private List<SetupManager.UnitEntry> unitEntries;
+    private List<Unit> unitList;
 
-    public void Init(List<SetupManager.UnitEntry> smEntries)
+    public void Init(List<Unit> smUnits)
     {
-        unitEntries = smEntries;
+        unitList = smUnits;
         base.Start();
         StartCoroutine("RaidDamage");
     }
@@ -39,18 +40,22 @@ public class test_encounter : Encounter
         SceneManager.LoadScene("YouLose");
     }
 
+    protected override void SetPlayers()
+    {
+        raid_manager.SetPlayers(this.unitList);
+    }
+
     protected override void AddNewPlayers()
     {
         base.AddNewPlayers();
+        Debug.Log("Unit Count: " + this.raid_manager.unit_list.Count);
 
+        /*
         foreach(SetupManager.UnitEntry unit in this.unitEntries)
         {
             AddNewPlayer(unit.unitID, unit.unitPos);
         }
 
-        Debug.Log("Unit Count: " + this.raid_manager.unit_list.Count);
-
-        /*
         AddNewPlayer(0, new Vector3(0, 2, 0));
         AddNewPlayer(1, new Vector3(0, 0, 0));
         AddNewPlayer(2, new Vector3(-2, 0, 0));

@@ -38,6 +38,7 @@ public class Encounter : MonoBehaviour
         GameObject rm = new GameObject("RaidManager");
         raid_manager = rm.AddComponent(typeof(RaidManager)) as RaidManager;
         raid_manager.encounter = this;
+        SetPlayers();
         AddNewPlayers();
     }
 
@@ -48,6 +49,10 @@ public class Encounter : MonoBehaviour
         Instantiate(spell_db.spells[spell_id].spell_prefab, location, Quaternion.identity);
     }
 
+    protected virtual void SetPlayers()
+    {
+
+    }
 
     protected void AddNewPlayer(int unit_id, Vector3 location)
     {

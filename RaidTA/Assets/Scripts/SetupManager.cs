@@ -14,7 +14,7 @@ public class SetupManager : MonoBehaviour
     }
 
     public UnitButton clickedButton { get; private set; }
-    private List<GameObject> unitList;
+    private List<Unit> unitList;
     private List<UnitEntry> unitEntries;
     private int partyCount = 0;
     private int partyLimit = 6;
@@ -25,7 +25,7 @@ public class SetupManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        unitList = new List<GameObject>();
+        unitList = new List<Unit>();
         unitEntries = new List<UnitEntry>();
         editMenu = GameObject.Find("EditMenu").GetComponent<EditMenu>();
     }
@@ -73,7 +73,7 @@ public class SetupManager : MonoBehaviour
 
             Unit unitScript = unit.GetComponent<Unit>();
             if (unitScript != null){
-                unitScript.number.text = this.clickedButton.unitCount.ToString();
+                unitScript.number.text = (this.partyCount+1).ToString();
                 unitScript.enabled = false;
             }
 
@@ -82,7 +82,7 @@ public class SetupManager : MonoBehaviour
             worldPos.z = 1;
             unit.transform.position = worldPos;
 
-            unitList.Add(unit);
+            unitList.Add(unitScript);
             unitEntries.Add(new UnitEntry() { unitID = this.clickedButton.unitID, unitPos = unit.transform.position });
             this.partyCount += 1;
         }
@@ -90,14 +90,9 @@ public class SetupManager : MonoBehaviour
 
     public void StartRaid()
     {
-        foreach(GameObject obj in unitList)
-        {
-            Destroy(obj);
-        }
-
         GameObject tenc = new GameObject("test_encounter");
         encounter = tenc.AddComponent(typeof(test_encounter)) as test_encounter;
-        encounter.Init(this.unitEntries);
+        encounter.Init(this.unitList);
 
         GameObject UIObj = GameObject.Find("Canvas");
         Canvas UICanvas = UIObj.GetComponent<Canvas>();

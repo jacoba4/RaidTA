@@ -1,10 +1,9 @@
 Pre encounter editing
 	Drag and drop units into scene
-		Disable Unit/NPC script
-		Have a max party size
 		Do we want NPCs already spawned in? aka edit party for encounter, not edit encounter as well
-		Add added units to RaidManager
+		Add added units to RaidManager during the setup phase
 			Numbers based on party index
+			prevents reinstantiation
 		
 	Edit their stats
 		Click on unit to edit
@@ -13,20 +12,5 @@ Pre encounter editing
 		Button to delete
 			Removes unit from RaidManager
 			Adjusts all units' visible numbers later in the data structure
-			
-			
-	Play Button
-		this means we need to have framework in place to begin an encounter
-			allow player party control input
-			enable all Unit/NPC scripts
-	
+
 	Suggested party button? (stretch)
-	
-	
-
-
-Austin
-	
-	
-	
-Brian

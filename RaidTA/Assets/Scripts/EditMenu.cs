@@ -44,9 +44,9 @@ public class EditMenu : MonoBehaviour
         {
             damage.text = u.damage.ToString();
         }
-        attack_speed.text = u.attack_speed.ToString();
-        range.text = u.range.ToString();
-        move_speed.text = u.move_speed.ToString();
+        attack_speed.text = u.attack_speed.ToString("F1");
+        range.text = u.range.ToString("F1");
+        move_speed.text = u.move_speed.ToString("F1");
     }
 
     public void EditUnit()
@@ -60,9 +60,9 @@ public class EditMenu : MonoBehaviour
         {
             unit.damage = int.Parse(damage.text);
         }
-        unit.attack_speed = int.Parse(attack_speed.text);
-        unit.range = int.Parse(range.text);
-        unit.move_speed = int.Parse(move_speed.text);
+        unit.attack_speed = float.Parse(attack_speed.text);
+        unit.range = float.Parse(range.text);
+        unit.move_speed = float.Parse(move_speed.text);
     }
 
     public void Interactable(bool b)
@@ -70,16 +70,24 @@ public class EditMenu : MonoBehaviour
         delete.interactable = hp.interactable = damage.interactable = attack_speed.interactable = range.interactable = move_speed.interactable = b;
     }
 
+    public void Clear()
+    {
+        unit = null;
+        hp.text = damage.text = attack_speed.text = range.text = move_speed.text = "";
+    }
+
     
 
     public void SetHealth()
     {
+        if(unit == null) { return; }
         unit.max_hp = int.Parse(hp.text);
         unit.hp = int.Parse(hp.text);
     }
 
     public void SetDamage()
     {
+        if (unit == null) { return; }
         if (unit.is_healer)
         {
             unit.healing = int.Parse(damage.text);
@@ -92,14 +100,17 @@ public class EditMenu : MonoBehaviour
 
     public void SetAttackSpeed()
     {
-        unit.attack_speed = int.Parse(attack_speed.text);
+        if (unit == null) { return; }
+        unit.attack_speed = float.Parse(attack_speed.text);
     }
     public void SetRange()
     {
-        unit.range = int.Parse(range.text);
+        if (unit == null) { return; }
+        unit.range = float.Parse(range.text);
     }
     public void SetMoveSpeed()
     {
-        unit.move_speed = int.Parse(move_speed.text);
+        if (unit == null) { return; }
+        unit.move_speed = float.Parse(move_speed.text);
     }
 }

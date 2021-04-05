@@ -99,4 +99,19 @@ public class SetupManager : MonoBehaviour
         UICanvas.enabled = false;
         this.GetComponent<SetupManager>().enabled = false;
     }
+
+    public void DeleteUnit()
+    {
+        if(editMenu.unit == null) { return; }
+        Unit u = editMenu.unit;
+        unitList.Remove(u);
+        partyCount--;
+        for(int i = 0; i < partyCount; i++)
+        {
+            unitList[i].number.text = (i+1).ToString();
+        }
+        Destroy(u.gameObject);
+        editMenu.Interactable(false);
+        editMenu.Clear();
+    }
 }

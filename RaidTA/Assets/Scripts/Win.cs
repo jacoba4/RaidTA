@@ -14,6 +14,6 @@ public class Win : MonoBehaviour
     // Update is called once per frame
     public void PlayAgain()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("main");
     }
 }

@@ -1,0 +1,92 @@
+Nodes
+	UI
+		name
+		Moveable
+		input and output
+		execution path
+		way to connect nodes, line renderer?
+	
+	Code
+		Each node is a function
+		can return data (goes into output)
+		execute something (if in execution path)
+		
+	Permanent nodes
+		Update
+			runs at the end of update :)
+		
+		Start
+			runs at the start :)
+			
+	Program Flow nodes
+		If
+			input 
+				bool
+			output
+				execution path to true
+				execution path to false
+				
+		And
+			input
+				bool a
+				bool b
+				
+			output
+				a && b
+		
+		or
+			input
+				bool a
+				bool b
+			output
+				a || b
+		
+		not
+			input
+				bool a
+			output
+				!a
+												
+	Execution nodes
+		SpawnNpc
+			input
+				unsigned int unitID
+				vector3 location
+
+			Execution
+				spawns unit(unitID) at location
+				adds to npc list
+				
+		SpawnSpell
+			input
+				unsigned int spellID
+				vector3 location
+
+			execution
+				spawns spell(spellID) at location
+		
+		DamageUnit
+			input
+				Unit* unit
+				int damage
+			execution	
+				unit.hp -= damage
+		
+		
+	Access nodes
+		GetUnit
+			input
+				unsigned int index
+			
+			output
+				Unit*
+		GetHP
+			input
+				Unit* unit
+			output
+				unit.hp
+		GetRaid
+			output
+				Array of Unit*
+		
+		

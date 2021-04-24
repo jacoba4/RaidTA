@@ -61,6 +61,7 @@ public class SaveMenu : MonoBehaviour
 
             Unit newScript = unitObj.GetComponent<Unit>();
             newScript.hp = (int) saveUnits[i].stats[1];
+            newScript.max_hp = (int) saveUnits[i].stats[1];
             newScript.damage = (int) saveUnits[i].stats[2];
             newScript.attack_speed = saveUnits[i].stats[3];
             newScript.range = saveUnits[i].stats[4];

@@ -157,6 +157,5 @@ public class SetupManager : MonoBehaviour
 
         unitEntries = loadEntries;
         partyCount = unitEntries.Count;
-        Debug.Log(partyCount);
     }
 }

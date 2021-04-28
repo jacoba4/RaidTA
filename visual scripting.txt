@@ -46,6 +46,14 @@ Nodes
 				bool a
 			output
 				!a
+		
+		loop
+			input
+				bool condition
+				
+			execution
+				path for in loop
+				path for out of loop
 												
 	Execution nodes
 		SpawnNpc

@@ -10,6 +10,7 @@ public class SetupManager : MonoBehaviour
     public struct UnitEntry
     {
         public int unitID;
+        public Unit unitScript;
         public Vector3 unitPos;
     }
 
@@ -19,6 +20,7 @@ public class SetupManager : MonoBehaviour
     private int partyCount = 0;
     private int partyLimit = 6;
     EditMenu editMenu;
+    SaveMenu saveMenu;
 
     protected test_encounter encounter;
 
@@ -28,6 +30,7 @@ public class SetupManager : MonoBehaviour
         unitList = new List<Unit>();
         unitEntries = new List<UnitEntry>();
         editMenu = GameObject.Find("EditMenu").GetComponent<EditMenu>();
+        saveMenu = GameObject.Find("SaveMenu").GetComponent<SaveMenu>();
     }
 
     // Update is called once per frame
@@ -47,6 +50,11 @@ public class SetupManager : MonoBehaviour
     public void PickUnit(UnitButton unitButton)
     {
         this.clickedButton = unitButton;
+    }
+
+    public void ResetUnit()
+    {
+        this.clickedButton = null;
     }
 
     private void PlaceUnit()
@@ -69,21 +77,21 @@ public class SetupManager : MonoBehaviour
         else if (!EventSystem.current.IsPointerOverGameObject() && this.partyCount < this.partyLimit)
         {
             this.clickedButton.unitCount += 1;
-            GameObject unit = (GameObject) Instantiate(this.clickedButton.UnitPrefab, transform.position, Quaternion.identity);
+            GameObject unitObj = (GameObject) Instantiate(this.clickedButton.UnitPrefab, transform.position, Quaternion.identity);
 
-            Unit unitScript = unit.GetComponent<Unit>();
-            if (unitScript != null){
-                unitScript.number.text = (this.partyCount+1).ToString();
-                unitScript.enabled = false;
+            Unit unit = unitObj.GetComponent<Unit>();
+            if (unit != null){
+                unit.number.text = (this.partyCount+1).ToString();
+                unit.enabled = false;
             }
 
             Vector3 mousePos = Input.mousePosition;
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
             worldPos.z = 1;
-            unit.transform.position = worldPos;
+            unitObj.transform.position = worldPos;
 
-            unitList.Add(unitScript);
-            unitEntries.Add(new UnitEntry() { unitID = this.clickedButton.unitID, unitPos = unit.transform.position });
+            unitList.Add(unit);
+            unitEntries.Add(new UnitEntry() { unitID = this.clickedButton.unitID, unitScript = unit, unitPos = unit.transform.position });
             this.partyCount += 1;
         }
     }
@@ -105,6 +113,7 @@ public class SetupManager : MonoBehaviour
         if(editMenu.unit == null) { return; }
         Unit u = editMenu.unit;
         unitList.Remove(u);
+        unitEntries.RemoveAll(un => un.unitScript == u);
         partyCount--;
         for(int i = 0; i < partyCount; i++)
         {
@@ -113,5 +122,40 @@ public class SetupManager : MonoBehaviour
         Destroy(u.gameObject);
         editMenu.Interactable(false);
         editMenu.Clear();
+    }
+
+    public void ClearUnits()
+    {
+        unitEntries.Clear();
+        foreach (Unit u in unitList)
+        {
+            Destroy(u.gameObject);
+        }
+        unitList.Clear();
+        partyCount = 0;
+
+        editMenu.Interactable(false);
+        editMenu.Clear();
+    }
+
+    public void SaveParty()
+    {
+        if (partyCount > 0) { saveMenu.Save(unitEntries); }
+    }
+
+    public void LoadParty()
+    {
+        List<UnitEntry> loadEntries = saveMenu.Load();
+        if (loadEntries.Count == 0) { return; }
+
+        ClearUnits();
+
+        foreach (UnitEntry entry in loadEntries)
+        {
+            unitList.Add(entry.unitScript);
+        }
+
+        unitEntries = loadEntries;
+        partyCount = unitEntries.Count;
     }
 }

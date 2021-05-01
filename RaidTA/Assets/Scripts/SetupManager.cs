@@ -22,7 +22,7 @@ public class SetupManager : MonoBehaviour
     EditMenu editMenu;
     SaveMenu saveMenu;
 
-    protected test_encounter encounter;
+    protected Encounter encounter;
 
     // Start is called before the first frame update
     void Start()

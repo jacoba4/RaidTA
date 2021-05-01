@@ -1,0 +1,20 @@
+create, save, load content
+history log
+	stat change
+	damage inflicted
+	who did what to who
+
+display damage/healing
+	+2/-2 for damage and healing
+	visual note
+	reveal the change in numbers
+	
+place obstacles
+	more complex spatial strategies
+	timed events
+	create a boundary
+	
+Gamified!
+	super easy to convert to a game
+	people can create their own encounters and challenges
+		visual scripting for encounters?

@@ -60,7 +60,15 @@ public class SMExecutionOutput : SMExecution, IDragHandler, IEndDragHandler
             {
                 connected = false;
                 input.GetComponent<SMExecutionInput>().Unlink();
-                node.SetNext(null);
+                if (gameObject.tag == "EXOutputTwo")
+                {
+                    SMIF temp = (SMIF)node;
+                    temp.SetNextFalse(null);
+                }
+                else
+                {
+                    node.SetNext(null);
+                }
             }
         }
     }
@@ -76,7 +84,15 @@ public class SMExecutionOutput : SMExecution, IDragHandler, IEndDragHandler
                 connected = true;
                 SMExecutionInput EXin = input.GetComponent<SMExecutionInput>();
                 EXin.Link(node);
-                node.SetNext(EXin.node);
+                if(gameObject.tag == "EXOutputTwo")
+                {
+                    SMIF temp = (SMIF)node;
+                    temp.SetNextFalse(EXin.node);
+                }
+                else
+                {
+                    node.SetNext(EXin.node);
+                }
             }
         }
     }

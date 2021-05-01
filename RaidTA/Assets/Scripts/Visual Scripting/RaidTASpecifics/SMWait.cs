@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SMPrintBool : SMOneInput
+public class SMWait : SMOneInput
 {
     public override void Execute()
     {
         if (!CheckInputs()) { return; }
-        Debug.Log((bool)input_a.Output());
+        StartCoroutine(wait());
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds((int)input_a.Output());
         base.Execute();
     }
 }

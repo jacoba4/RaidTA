@@ -22,6 +22,7 @@ public class SMNode : MonoBehaviour
     }
     public void SetPrev(SMNode n)
     {
+        /*
         exec_prev = n;
         if(n != null)
         {
@@ -29,7 +30,7 @@ public class SMNode : MonoBehaviour
             {
                 n.SetNext(this);
             }
-        }
+        }*/
     }
 
     public SMNode GetNext()

@@ -10,6 +10,10 @@ TagManager:
   - SMInput
   - SMStart
   - EXInput
+  - EXOutputTwo
+  - SMUpdate
+  - SMCanvas
+  - SetupCanvas
   layers:
   - Default
   - TransparentFX

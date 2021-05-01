@@ -123,6 +123,7 @@ public class NPC : Unit
 
     void CheckThreat()
     {
+        if(threat_table.Count == 0) { return; }
         Sort();
         ThreatEntry current = FindEntry(current_target);
         ThreatEntry top = threat_table[0];

@@ -20,7 +20,7 @@ public class SetupManager : MonoBehaviour
     private int partyLimit = 6;
     EditMenu editMenu;
 
-    protected test_encounter encounter;
+    protected Encounter encounter;
 
     // Start is called before the first frame update
     void Start()

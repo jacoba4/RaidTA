@@ -6,9 +6,21 @@ public class SMOneInput : SMNode
 {
     public SMNode input_a;
 
-    protected virtual void CheckInputs()
+
+    public override void Execute()
     {
-        if(input_a == null) { ErrorInputA(); }
+        if (!CheckInputs()) { return; }
+        base.Execute();
+    }
+
+    protected virtual bool CheckInputs()
+    {
+        if(input_a == null) 
+        { 
+            ErrorInputA();
+            return false;
+        }
+        return true;
     }
     protected void ErrorInputA()
     {

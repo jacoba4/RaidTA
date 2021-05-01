@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Encounter : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class Encounter : MonoBehaviour
     protected RaidManager raid_manager;
 
     public float encountertime;
+
+    protected List<SetupManager.UnitEntry> unitEntries;
+    protected List<Unit> unitList;
 
     // Start is called before the first frame update
     protected virtual void Start()
@@ -27,10 +31,30 @@ public class Encounter : MonoBehaviour
         encountertime = 0;
     }
 
+    public virtual void Init(List<Unit> smUnits)
+    {
+        unitList = smUnits;
+    }
+
     // Update is called once per frame
     protected virtual void Update()
     {
         encountertime += Time.deltaTime;
+
+        if (npc_list[0].hp == 0)
+        {
+            SceneManager.LoadScene("YouWin");
+        }
+
+        for (int i = 0; i < raid_manager.unit_list.Count; i++)
+        {
+            if (raid_manager.unit_list[i].hp > 0)
+            {
+                return;
+            }
+        }
+
+        SceneManager.LoadScene("YouLose");
     }
 
     void SpawnRaid()
@@ -42,7 +66,7 @@ public class Encounter : MonoBehaviour
         AddNewPlayers();
     }
 
-    protected void CastSpell(int spell_id, Vector3 location)
+    public void CastSpell(int spell_id, Vector3 location)
     {
         if(spell_id < 0 || spell_id >= spell_db.spells.Length)  { return; }
         if(spell_db.spells[spell_id].spell_prefab == null) { return; }
@@ -51,7 +75,12 @@ public class Encounter : MonoBehaviour
 
     protected virtual void SetPlayers()
     {
+        raid_manager.SetPlayers(this.unitList);
+    }
 
+    public void SetUnitList(List<SetupManager.UnitEntry> units)
+    {
+        this.unitEntries = units;
     }
 
     protected void AddNewPlayer(int unit_id, Vector3 location)
@@ -67,7 +96,7 @@ public class Encounter : MonoBehaviour
 
     }
 
-    protected void AddNewNPC(int npc_id, Vector3 location)
+    public void AddNewNPC(int npc_id, Vector3 location)
     {
         if(npc_id < 0 || npc_id >= npc_db.npcs.Length) { return; }
 

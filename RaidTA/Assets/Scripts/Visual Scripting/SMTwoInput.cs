@@ -5,10 +5,21 @@ using UnityEngine;
 public class SMTwoInput : SMOneInput
 {
     public SMNode input_b;
-    protected override void CheckInputs()
+
+    public override void Execute()
+    {
+        if (!CheckInputs()) { return; }
+        base.Execute();
+    }
+    protected override bool CheckInputs()
     {
         base.CheckInputs();
-        if(input_b == null) { ErrorInputB(); }
+        if(input_b == null) 
+        { 
+            ErrorInputB();
+            return false;
+        }
+        return true;
     }
     protected void ErrorInputB()
     {

@@ -22,6 +22,7 @@ public class SetupManager : MonoBehaviour
     EditMenu editMenu;
     SaveMenu saveMenu;
 
+    public bool custom_encounter;
     protected Encounter encounter;
 
     // Start is called before the first frame update
@@ -98,13 +99,29 @@ public class SetupManager : MonoBehaviour
 
     public void StartRaid()
     {
-        GameObject tenc = new GameObject("test_encounter");
-        encounter = tenc.AddComponent(typeof(test_encounter)) as test_encounter;
-        encounter.Init(this.unitList);
+        
 
-        GameObject UIObj = GameObject.Find("Canvas");
+        GameObject UIObj = GameObject.Find("SetupCanvas");
         Canvas UICanvas = UIObj.GetComponent<Canvas>();
         UICanvas.enabled = false;
+
+
+        GameObject tenc;
+        if (custom_encounter)
+        {
+            
+            tenc = new GameObject("Encounter");
+            encounter = tenc.AddComponent(typeof(Encounter)) as Encounter;
+            StartCoroutine(StartPlay());
+        }
+        else
+        {
+            tenc = new GameObject("test_encounter");
+            encounter = tenc.AddComponent(typeof(test_encounter)) as test_encounter;
+        }
+
+        encounter.tag = "Encounter";
+        encounter.Init(this.unitList);
         this.GetComponent<SetupManager>().enabled = false;
     }
 
@@ -157,5 +174,13 @@ public class SetupManager : MonoBehaviour
 
         unitEntries = loadEntries;
         partyCount = unitEntries.Count;
+    }
+
+    IEnumerator StartPlay()
+    {
+        yield return new WaitForSeconds(1);
+        SMController SMC = GameObject.FindGameObjectWithTag("SMController").GetComponent<SMController>();
+        SMC.Play();
+        SMC.Execute();
     }
 }

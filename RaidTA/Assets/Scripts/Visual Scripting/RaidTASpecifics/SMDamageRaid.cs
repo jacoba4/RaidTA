@@ -12,5 +12,6 @@ public class SMDamageRaid : SMOneInput
         {
             rm.DamageRaid((int)input_a.Output());
         }
+        base.Execute();
     }
 }

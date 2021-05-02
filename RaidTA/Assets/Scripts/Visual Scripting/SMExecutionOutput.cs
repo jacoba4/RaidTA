@@ -16,6 +16,7 @@ public class SMExecutionOutput : SMExecution, IDragHandler, IEndDragHandler
         base.Start();
         offset = .01f;
         lr = GetComponent<LineRenderer>();
+        lr.startWidth = lr.endWidth = 0.1f;
         cam = Camera.main;
     }
 

@@ -23,6 +23,7 @@ public class DragableOutput : MonoBehaviour, IDragHandler, IEndDragHandler
         offset = .01f;
         output_image = GetComponent<Image>();
         lr = GetComponent<LineRenderer>();
+        lr.startWidth = lr.endWidth = 0.1f;
         cam = Camera.main;
     }
 

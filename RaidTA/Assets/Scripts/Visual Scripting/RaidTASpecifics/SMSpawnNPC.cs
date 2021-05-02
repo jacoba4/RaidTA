@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SMSpawnNPC : SMTwoInput
 {
-    public Encounter em;
+    
     private void Start()
     {
-        em = GameObject.FindGameObjectWithTag("Encounter").GetComponent<Encounter>();
+        
     }
     public override void Execute()
     {
@@ -15,6 +15,7 @@ public class SMSpawnNPC : SMTwoInput
         int unit_id = (int)input_a.Output();
         Vector3 location = (Vector3)input_b.Output();
 
+        Encounter em = GameObject.FindGameObjectWithTag("Encounter").GetComponent<Encounter>();
         em.AddNewNPC(unit_id, location);
         base.Execute();
     }

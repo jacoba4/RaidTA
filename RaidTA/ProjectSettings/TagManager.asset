@@ -14,6 +14,7 @@ TagManager:
   - SMUpdate
   - SMCanvas
   - SetupCanvas
+  - SMController
   layers:
   - Default
   - TransparentFX

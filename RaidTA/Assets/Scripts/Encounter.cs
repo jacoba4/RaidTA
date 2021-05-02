@@ -41,10 +41,14 @@ public class Encounter : MonoBehaviour
     {
         encountertime += Time.deltaTime;
 
-        if (npc_list[0].hp == 0)
+        if(npc_list.Count > 0)
         {
-            SceneManager.LoadScene("YouWin");
+            if (npc_list[0].hp == 0)
+            {
+                SceneManager.LoadScene("YouWin");
+            }
         }
+        
 
         for (int i = 0; i < raid_manager.unit_list.Count; i++)
         {
@@ -104,6 +108,7 @@ public class Encounter : MonoBehaviour
         npc_list.Add(Instantiate(npc.npc_prefab, location, Quaternion.identity).GetComponent<NPC>());
         npc_list[npc_list.Count - 1].encounter = this;
         npc_list[npc_list.Count - 1].name = npc.name;
+        npc_list[npc_list.Count - 1].InitTable(raid_manager.unit_list);
     }
 
     protected virtual void AddNewNPCs(List<Unit> units)

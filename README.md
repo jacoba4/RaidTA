@@ -33,3 +33,23 @@ Other useful references for the player to use
 
 
 
+Visual Scripting Guide
+
+As of now, there is no way for the user to create new visual scripting nodes.
+
+Start() is called at the beginning of the encounter
+
+Update() is called every frame
+
+Nodes can be dragged using the left mouse button
+
+Blue links are for the encounter execution path
+
+Gray links are for input and output from/to nodes
+
+Each can be linked by clicking and dragging
+
+Use the "Done" button to continue to party customization once you are finished
+
+
+

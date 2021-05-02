@@ -7,18 +7,20 @@ using UnityEngine.UI;
 public class DragableUI : MonoBehaviour,
                IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    Vector2 dragOffset = Vector2.zero;
+    Vector3 dragOffset = Vector2.zero;
     Vector2 limits = Vector2.zero;
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        dragOffset = eventData.position - (Vector2)transform.position;
+        Camera cam = Camera.main;
+        dragOffset = cam.ScreenToWorldPoint(eventData.position) - transform.position;
         limits = transform.parent.GetComponent<RectTransform>().rect.max;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position - dragOffset;
+        Camera cam = Camera.main;
+        transform.position = cam.ScreenToWorldPoint(eventData.position) - dragOffset;
         var p = transform.localPosition;
         if (p.x < -limits.x) { p.x = -limits.x; }
         if (p.x > limits.x) { p.x = limits.x; }

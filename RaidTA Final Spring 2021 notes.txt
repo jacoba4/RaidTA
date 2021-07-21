@@ -1,0 +1,16 @@
+dropdowns 
+
+
+instead of vector3 use drag and drop
+
+
+End stats
+damage dealt
+amount healed
+damage taken
+avoidable damage taken
+
+
+timestamps on the right side of the screen
+click timestamp to go to it
+	loads the state at that moment
